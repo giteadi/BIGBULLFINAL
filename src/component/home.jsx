@@ -5,9 +5,9 @@ import { SiOpenlayers } from "react-icons/si";
 import logo from "./../../public/logo/logo.png";
 import { FaArrowRightLong } from "react-icons/fa6";
 // import heroBackground from "../Assets/5.mp4";
-import heroBackground from "../Assets/hero.mp4";
-import videoInMobileFrame from "../Assets/videoInMobileFrame.mp4";
-import videoInTableFrame from "../Assets/videoInTabletForm.mp4";
+// import heroBackground from "../Assets/hero.mp4";
+// import videoInMobileFrame from "../Assets/videoInMobileFrame.mp4";
+// import videoInTableFrame from "../Assets/videoInTabletForm.mp4";
 import tableFrame from "../Assets/tableFrame.png";
 import mobileFrame from "../Assets/mobileFrame.png";
 import bullImage from "../Assets/BULL.png";
@@ -174,7 +174,7 @@ const Home = () => {
             <div className={`hero ${!isChecked || "brightness-50"} transition-all sm:px-10 duration-1000 ease-in`}>
               <div className="h-screen">
                 <video
-                  src={heroBackground}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719990295/bigbull/hero_vzz7nf.mp4"
                   poster={videoPoster}
                   autoPlay
                   loop
@@ -258,7 +258,7 @@ const Home = () => {
             <div className="content-center schematic-right relative test-tablet bg-no-repeat bg-contain bg-center">
               <div className="max-w-4xl table">
                 <video
-                  src={videoInTableFrame}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719989358/bigbull/videoInTabletForm_znfp7p.mp4"
                   autoPlay
                   loop
                   muted
@@ -267,7 +267,7 @@ const Home = () => {
               </div>
               <div className="mobile absolute bg-center bg-no-repeat bg-contain w-1/4 top-1/2 right-[7%] p-10">
                 <video
-                  src={videoInMobileFrame}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719989359/bigbull/videoInMobileFrame_jf8k4x.mp4"
                   autoPlay
                   loop
                   muted
