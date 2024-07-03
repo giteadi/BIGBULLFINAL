@@ -60,9 +60,9 @@ const Invoice = () => {
             <p className="font-semibold">Total:</p>
           </div>
           <div className="ml-4">
-            <p className="text-right">${subtotal.toFixed(2)}</p>
-            <p className="text-right">${tax.toFixed(2)}</p>
-            <p className="text-right">${total.toFixed(2)}</p>
+            <p className="text-right">Rs {subtotal.toFixed(2)}</p>
+            <p className="text-right">Rs {tax.toFixed(2)}</p>
+            <p className="text-right">Rs {total.toFixed(2)}</p>
           </div>
         </div>
       </div>

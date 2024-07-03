@@ -1,5 +1,41 @@
 import React, { useEffect } from 'react';
 
+const cardsData = [
+  {
+    title: 'Basic Plan',
+    price: '$9.99',
+    frequency: '/monthly',
+    button: 'GET STARTED',
+    features: [
+      '✅ Access to 5 free courses monthly',
+      '✅ Access to a selection of beginner-level courses',
+      '✅ Quizzes and assessments for self-evaluation',
+    ],
+  },
+  {
+    title: 'Premium Plan',
+    price: '$29.99',
+    frequency: '/monthly',
+    button: 'GET STARTED',
+    features: [
+      '✅ Access to 20 free courses monthly',
+      '✅ All features from the Pro Plan',
+      '✅ One-on-one virtual tutoring sessions with educators',
+    ],
+  },
+  {
+    title: 'Pro Plan',
+    price: '$19.99',
+    frequency: '/monthly',
+    button: 'GET STARTED',
+    features: [
+      '✅ Access to 10 free courses monthly',
+      '✅ All features from the Basic Plan',
+      '✅ Full access to intermediate and advanced courses',
+    ],
+  },
+]
+
 const SubscriptionPlans = () => {
 
   useEffect(() => {
@@ -37,49 +73,26 @@ const SubscriptionPlans = () => {
       </p>
       <h1 className="text-3xl font-bold mb-16 mt-8">Subscription Plans</h1>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <div className='card-container'>
-        <div className=" card bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between max-w-xs mx-auto sm:max-w-sm mb-4 lg:mb-0">
-          <div className="">
-            <h2 className="text-2xl font-semibold mb-4">Basic Plan</h2>
-            <p className="text-4xl font-bold mb-6">$9.99 <span className="text-xl">/monthly</span></p>
-            <button className="w-full bg-red-700 text-white py-2 px-4 rounded mb-6">GET STARTED</button>
-            <ul className="text-left space-y-5 text-xl h-64	">
-              <li>✅ Access to 5 free courses monthly</li>
-              <li>✅ Access to a selection of beginner-level courses</li>
-              <li>✅ Quizzes and assessments for self-evaluation</li>
-            </ul>
-          </div>
-        </div>
-        </div>
-        <div className='card-container'>
-        <div className=" card bg-white text-black p-8 rounded-lg shadow-lg text-center flex flex-col justify-between transform scale-105 max-w-xs mx-auto sm:max-w-sm mb-3 lg:mb-0 ">
-          <div className="">
-            <h2 className="text-2xl font-semibold mb-4">Premium Plan</h2>
-            <p className="text-4xl font-bold mb-3">$29.99 <span className="text-xl">/monthly</span></p>
-          </div>
-          <button className="bg-red-700 text-white py-2 px-4 rounded mb-4">GET STARTED</button>
-          <ul className="text-left space-y-5 text-xl h-64	h-64">
-            <li>✅ Access to 20 free courses monthly</li>
-            <li>✅ All features from the Pro Plan</li>
-            <li>✅ One-on-one virtual tutoring sessions with educators</li>
+  {cardsData.map((card, index) => (
+    <div key={index} className="card-container">
+      <div className="card bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between max-w-xs mx-auto sm:max-w-sm mb-4 lg:mb-0 min-h-[28rem]">
+        <div className="">
+          <h2 className="text-2xl font-semibold mb-4">{card.title}</h2>
+          <p className="text-4xl font-bold mb-6">
+            {card.price} <span className="text-xl">{card.frequency}</span>
+          </p>
+          <button className="w-full bg-red-700 text-white py-2 px-4 rounded mb-6">{card.button}</button>
+          <ul className="text-left space-y-5 text-xl h-64">
+            {card.features.map((feature, i) => (
+              <li key={i}>{feature}</li>
+            ))}
           </ul>
         </div>
-        </div>
-        <div className='card-container'>
-        <div className=" card bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between max-w-xs mx-auto sm:max-w-sm mb-4 lg:mb-0">
-          <div className="">
-            <h2 className="text-2xl font-semibold mb-4">Pro Plan</h2>
-            <p className="text-4xl font-bold mb-6">$19.99 <span className="text-xl">/monthly</span></p>
-            <button className="w-full bg-red-700 text-white py-2 px-4 rounded mb-6">GET STARTED</button>
-            <ul className="text-left space-y-5 text-xl h-64	">
-              <li>✅ Access to 10 free courses monthly</li>
-              <li>✅ All features from the Basic Plan</li>
-              <li>✅ Full access to intermediate and advanced courses</li>
-            </ul>
-          </div>
-        </div>
-        </div>
       </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

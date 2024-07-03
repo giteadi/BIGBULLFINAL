@@ -51,7 +51,7 @@ const [calculation, setCalculation] = useState();
     <>     
       <section style={{minHeight: '70vh'}} className="py-6 pt-0 ">
         <div className="max-w-screen-xl m-auto sm:px-10">
-        <h4 style={{fontFamily: "Futura-bold"}} className="card-title mb-10 text-5xl font-bold">Your Course</h4>
+        <h4 style={{fontFamily: "Futura-bold"}} className="card-title mb-10 text-5xl max-sm:text-center font-bold">Your Course</h4>
           <div className="flex flex-wrap">
             <div className="lg:w-3/4 w-full mb-6 lg:mb-0">
       
@@ -60,20 +60,20 @@ const [calculation, setCalculation] = useState();
                   {cartCourses.map((course) =>  <article   
                       style={{
                       boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px'}} 
-                      className="flex flex-wrap md:flex-nowrap mb-4 p-4 gap-5 sm:gap-0">
+                      className="flex flex-wrap md:flex-nowrap mb-4 p-4 gap-6 sm:gap-0 justify-between">
                         
-                    <div className="lg:w-8/12 flex sm:max-lg:grow">
-                      <figure className="flex lg:me-lg-5">
-                        <div className="flex-shrink-0 w-36">
+                    <div className="flex sm:max-lg:grow">
+                      <figure className="flex lg:me-lg-5 flex-wrap">
+                        <div className="flex-shrink-0 w-36 max-sm:w-full">
                             <img src={`${course.coverImage}`} className="object-cover rounded-md w-full h-full" alt="Item" />
                             </div>
-                        <figcaption className="ml-4">
-                          <div className="text-base font-bold sm:max-md:text-base">{course.courseName}</div>
-                          <i className="text-gray-500 text-sm "> {course.nameOfInstructor} </i>
+                        <figcaption className="ml-4 md:max-w-36  ">
+                          <div className="max-sm:text-[5vw] font-bold sm:max-md:text-base max-sm:mb-5 max-sm:mt-10">{course.courseName}</div>
+                          <i className="text-gray-500 text-lg "> {course.nameOfInstructor} </i>
                           <ul className='mt-2'>
-                            <li className='list-disc text-xs ms-3'>{course.level}</li>
-                            <li className='list-disc text-xs ms-3'>{course.duration}</li>
-                            <li className='list-disc text-xs ms-3'>{course.lecture}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.level}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.duration}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.lecture}</li>
                           </ul>
                         </figcaption>
                       </figure>

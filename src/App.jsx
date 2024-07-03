@@ -37,11 +37,14 @@ import EnrollForm from './component/EnrollForm';
 // import locomotiveScroll from "locomotive-scroll";
 import PageNotFound from './component/pageNotFound';
 import ScrollToTop from './component/scrollTop';
+import EditProfileComponent from './component/Aditya/editProfile';
+import ProfilePage from './component/Aditya/profileDashboard';
 
 
 function App() {
   const location = useLocation();
   const hideNavbarRoutes = ['/'];
+  
 
   return (
     <>
@@ -83,6 +86,8 @@ function App() {
       <Route path='/SubscriptionPlans' element={<SubscriptionPlans/>}/>
       {/* <Route path='/LatestPage' element={<LatestPage/>}/> */}
       <Route path='/EnrollForm' element={<EnrollForm/>}/>
+      <Route path='/profile' element={<ProfilePage/>}/>
+      <Route path='/editProfile' element={<EditProfileComponent/>}/>
     </Routes>
       </ScrollToTop>
       <Footer/>

@@ -51,7 +51,7 @@ function Login() {
 
             <div className="w-full p-2.5 rounded-lg shadow-lg parent-container md:w-10/12 py-10">
               <div className="grid justify-between grid-cols-1 sm:grid-cols-2 child-container md:flex-row">
-                <div className="w-full login-image">
+                <div style={{backgroundImage: loginImage}} className="w-full login-image bg-no-repeat bg-contain bg-center">
                   {/* <img className='object-cover register-img' src={loginImage} alt="" width='100%'/> */}
                 </div>
 

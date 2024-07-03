@@ -2,7 +2,7 @@ import React from 'react';
 
 const RefundPolicy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-300 to-gray-300 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-r from-gray-300 to-gray-300 bg-white flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-pattern opacity-20"></div>
       <div className="relative bg-white bg-opacity-90 p-8 md:p-12 lg:p-16 rounded-lg shadow-2xl max-w-4xl w-full text-gray-800">
         <h1 style={{fontFamily: "Futura-bold"}} className="text-3xl font-bold mb-6 text-center text-red-700">Refund Policy</h1>

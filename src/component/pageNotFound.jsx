@@ -11,7 +11,9 @@ const PageNotFound = () => {
                     </h2>
                     <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
                     <p className="mt-4 mb-8 dark:text-gray-600">But dont worry, you can find plenty of other things on our homepage.</p>
-                    <Link rel="noopener noreferrer" to={'/to'} className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Back to homepage</Link>
+                    <div className="py-3 w-full max-w-44 px- font-semibold rounded dark:bg-violet-600 dark:text-gray-50 m-auto">
+                        <Link to={'/'} className="w-full">Back to homepage</Link>
+                    </div>
                 </div>
             </div>
         </section>        

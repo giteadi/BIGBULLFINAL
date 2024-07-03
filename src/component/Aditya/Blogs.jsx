@@ -80,7 +80,7 @@ const Blogs = () => {
           >
             {index % 2 === 0 ? (
               <>
-                <div className="settingOrder lg:ml-6 lg:mr-6 mt-4 lg:mt-0 md:col-span-2 max-w-3xl sm:m-auto">
+                <div className="max-lg:wrap-reverse max-lg:order-1 lg:ml-6 lg:mr-6 mt-4 lg:mt-0 md:col-span-2 max-w-3xl max-lg:text-center sm:m-auto">
                   <h2 className="text-md text-5xl text-red-700 font-bold">{post.title}</h2>
                   <h2 className="text-xxl text-3xl font-bold my-3">{post.subtitle}</h2>
                   <p className="my-3 text-xl tracking-wide text-gray-600 text-1xl leading-relaxed ">{post.content}</p>
@@ -122,7 +122,7 @@ const Blogs = () => {
                     }}
                   />
               </div>
-                <div className="lg:ml-6 lg:mr-6 mt-4 lg:mt-0 md:col-span-2 max-w-3xl sm:m-auto">
+                <div className="lg:ml-6 lg:mr-6 mt-4 lg:mt-0 md:col-span-2 max-w-3xl max-lg:text-center sm:m-auto">
                   <h2 className="text-md text-5xl text-red-700 font-bold">{post.title}</h2>   
                   <h2 className="text-xxl text-3xl font-bold my-3">{post.subtitle}</h2>
                   <p className="my-3 text-gray-600 text-1xl leading-relaxed text-xl tracking-wide">{post.content}</p>
@@ -151,11 +151,5 @@ const Blogs = () => {
 
 export default Blogs;
 const BlogsSection = styled.div`
-@media screen and (max-width:1024px){
-  
-  .settingOrder {
-    flex-wrap: wrap-reverse;
-    order: 1;
-  }
-}
+
 `

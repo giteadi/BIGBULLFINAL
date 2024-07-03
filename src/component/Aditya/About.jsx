@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import Image from "next/image";
-// import { WobbleCard } from "../ui/wobble-card";
 import WobbleCard  from "../WobbleCard.jsx";
-// import bgvdo from '../adiAssets/3dChart.mp4';
-// import babbar from '../adiAssets/babbar.jpeg'
-// import striver from '../adiAssets/striver.jpg';
-// import shardha from '../adiAssets/shradha.jpg'
-const babbar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgqJzQlE8eNkc--ncTm9P9RtYZFUgwMe5XGQ&s';
-const striver = 'https://sm.ign.com/ign_in/screenshot/default/techno-gamers-supergaming_dq2x.jpg'
-const shardha = 'https://sm.ign.com/ign_in/screenshot/default/techno-gamers-supergaming_dq2x.jpg';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -44,17 +35,17 @@ const About = () => {
   return (
     <AboutSection>
 
-    <div className="container mx-auto p-4 relative lg:mt-5">
+    <div className="container mx-auto relative lg:mt-5">
       {/* Bg Video */}
       {/* <video src={bgvdo} autoPlay muted loop className='bg-video absolute inset-0 w-full h-full object-cover'></video> */}
       <h1 style={{fontFamily: "Futura-bold"}} className={`text-black flex items-center justify-center text-5xl sm:text-8xl  py-4 transform transition-transform duration-1000 font-bold`}>
         About Us
       </h1>
-      <div className="mt-8 p-6 rounded-lg relative z-10 ">
+      <div className="max-sm:mt-0 mt-8 rounded-lg relative z-10 ">
       <div className="container mx-auto max-w-screen-xl">
-       <div key={0} className={`flex flex-col md:flex-row items-center gap-10 my-10 blog-left `}>
+       <div key={0} className={`flex flex-col md:flex-row items-center gap-10 max-sm:mt-0 my-10 blog-left `}>
           <div className="md:ml-6 md:mr-6 mt-4 md:mt-0">
-            <h2 className="text-md text-4xl	text-red-700 font-bold">{aboutPost[0].title}</h2>
+            <h2 className="text-md text-4xl	text-red-700 font-bold max-sm:text-center">{aboutPost[0].title}</h2>
             {/* <h2 className="text-xxl text-2xl font-bold my-3">{aboutPost[0].subtitle}</h2> */}
             <p className="mt-2 text-gray-600 text-1xl leading-loose	">{aboutPost[0].description}</p>
           </div>  
@@ -62,32 +53,16 @@ const About = () => {
         </div>
        <div key={1} className={`flex flex-col md:flex-row items-center gap-10 my-10 sm:my-20 blog-right`}>
           <div className="md:ml-6 md:mr-6 mt-4 md:mt-0 md:order-2">
-            <h2 className="text-md text-4xl	text-red-700 font-bold">{aboutPost[1].title}</h2>
-            {/* <h2 className="text-xxl text-2xl font-bold my-3">{aboutPost[1].subtitle}</h2> */}
+            <h2 className="text-md text-4xl	text-red-700 font-bold max-sm:text-center">{aboutPost[1].title}</h2>
             <p className="mt-2 text-gray-600 text-1xl leading-loose	">{aboutPost[1].description}</p>
           </div>  
           <img src={aboutPost[1].imgSrc} alt="Blog Post" className="w-full md:w-1/4 rounded-md md:order-1" />
         </div>
     </div>
-        {/* <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
-        <p className="text-lg mb-4">
-          Welcome to our website! We are a passionate team of developers,
-          designers, and content creators dedicated to providing the best
-          resources and information for our audience. Our mission is to share
-          knowledge, inspire creativity, and foster a community of learners and
-          innovators.
-        </p>
-        <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-        <p className="text-lg mb-4">
-          Our vision is to become a leading platform for learning and
-          innovation. We aim to provide high-quality content, tutorials, and
-          resources that empower individuals to learn new skills, enhance their
-          knowledge, and achieve their goals.
-        </p> */}
         <h2 className="text-5xl font-bold mb-16 text-center">Meet the Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center items-center">
           {
-              Array.from({ length: 3 }).map(() => <WobbleCard className="team-card bg-white p-6 rounded-lg shadow-lg max-w-sm	">
+              Array.from({ length: 3 }).map(() => <WobbleCard className="team-card bg-white rounded-lg shadow-lg max-w-sm	">
               <img
                 className="w-28 h-28 rounded-full mx-auto"
                 src="https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png"
@@ -95,23 +70,23 @@ const About = () => {
               />
               <div className="text-center mt-4 person-info">
                 <h2 className="text-xl font-medium mb-3">Joshua Woods</h2>
-                <p className="text-gray-500 border-1 border-slate-400	 p-2 max-w-48  desgination">Senior Designer</p>
+                <p className="text-gray-500 border-1 border-slate-400	 p-2 max-w-48 desgination">Senior Designer</p>
                 <p className="text-gray-600 mt-2 mt-3 m-auto desc">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
                 <div className="flex justify-center mt-2 gap-4">
                   <div className='social-media-icon'>
-                    <Link href="#" className="text-gray-500 mx-2 text-3xl">
+                    <Link className="text-gray-500 mx-2 text-3xl">
                       <FaFacebook/>
                     </Link>
                   </div>
                   <div>
-                    <Link href="#" className="text-gray-500 mx-2 text-3xl">
+                    <Link className="text-gray-500 mx-2 text-3xl">
                       <FaLinkedin/>
                     </Link>
                   </div>
                   <div>
-                    <Link href="#" className="text-gray-500 mx-2 text-3xl">
+                    <Link className="text-gray-500 mx-2 text-3xl">
                       <FaTwitter/>
                     </Link>
                   </div>
