@@ -14,7 +14,7 @@ const Invoice = () => {
   return (
     <div className="container mx-auto p-8 bg-gray-100">
       <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-3xl font-semibold mb-6">Invoice</h2>
+        <h2 style={{fontFamily: "Futura-bold"}} className="text-3xl font-semibold mb-6">Invoice</h2>
         <div className="flex justify-between mb-4">
           <div>
             <p className="font-semibold">Invoice Number:</p>
@@ -60,9 +60,9 @@ const Invoice = () => {
             <p className="font-semibold">Total:</p>
           </div>
           <div className="ml-4">
-            <p className="text-right">${subtotal.toFixed(2)}</p>
-            <p className="text-right">${tax.toFixed(2)}</p>
-            <p className="text-right">${total.toFixed(2)}</p>
+            <p className="text-right">Rs {subtotal.toFixed(2)}</p>
+            <p className="text-right">Rs {tax.toFixed(2)}</p>
+            <p className="text-right">Rs {total.toFixed(2)}</p>
           </div>
         </div>
       </div>

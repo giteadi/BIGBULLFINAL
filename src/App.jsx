@@ -34,18 +34,25 @@ import SubscriptionPlans from './component/Nousheen/subscription';
 import Navbar from './component/navbar';
 import LatestPage from './component/Nousheen/latestPage';
 import EnrollForm from './component/EnrollForm';
-import locomotiveScroll from "locomotive-scroll";
+// import locomotiveScroll from "locomotive-scroll";
+import PageNotFound from './component/pageNotFound';
+import ScrollToTop from './component/scrollTop';
+import EditProfileComponent from './component/Aditya/editProfile';
+import ProfilePage from './component/Aditya/profileDashboard';
 
 
 function App() {
   const location = useLocation();
   const hideNavbarRoutes = ['/'];
+  
 
   return (
     <>
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
+<ScrollToTop>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='*' element={<PageNotFound/>}/>
       {/* <Route path='/Navbar' element={<Navbar/>}/> */}
       <Route path='/login' element={<Login/>}/>
       {/* <Route path='/register' element={<Register/>}/> */}
@@ -61,10 +68,10 @@ function App() {
       <Route path='/HelpPage' element={<HelpPage/>}/>
       <Route path='/Cdetail/:id' element={<CourseDetail/>}/>
       {/* <Route path='/AsthaRegister' element={<AsthaRegister/>}/> */}
-      <Route path='/Carousel' element={<Carousel/>}/>
+      {/* <Route path='/Carousel' element={<Carousel/>}/> */}
       <Route path='/Cart' element={<Cart/>}/>
       <Route path='/Footer' element={<Footer/>}/>
-      <Route path='/UpdateProfile' element={<UpdateProfile/>}/>
+      {/* <Route path='/UpdateProfile' element={<UpdateProfile/>}/> */}
       <Route path='/Invoice' element={<Invoice/>}/>
       <Route path='/ResetPassword' element={<ResetPassword/>}/>
       <Route path='/Verification' element={<Verification/>}/>
@@ -72,14 +79,17 @@ function App() {
       <Route path='/RefundPolicy' element={<RefundPolicy/>}/>
       <Route path='/TermCondition' element={<TermCondition/>}/>
       <Route path='/ContactUs' element={<ContactUs/>}/>
-      <Route path='/FAQ' element={<FAQ/>}/>
+      {/* <Route path='/FAQ' element={<FAQ/>}/> */}
       {/* <Route path='/EnrollNow' element={<EnrollNow/>}/> */}
       <Route path='/singlepost/:id' element={<SinglePost/>}/>
       <Route path='/NotificationPage' element={<NotificationPage/>}/>
       <Route path='/SubscriptionPlans' element={<SubscriptionPlans/>}/>
-      <Route path='/LatestPage' element={<LatestPage/>}/>
+      {/* <Route path='/LatestPage' element={<LatestPage/>}/> */}
       <Route path='/EnrollForm' element={<EnrollForm/>}/>
+      <Route path='/profile' element={<ProfilePage/>}/>
+      <Route path='/editProfile' element={<EditProfileComponent/>}/>
     </Routes>
+      </ScrollToTop>
       <Footer/>
     </>
   )

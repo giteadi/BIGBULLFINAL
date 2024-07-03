@@ -61,7 +61,7 @@ const SinglePost = () => {
       {/* Logo and Name */}
       <div className="flex flex-col items-center mb-8">
         {/* <img src={logo} alt="logo" className="w-24 h-24 md:w-32 md:h-32 mb-4"/> */}
-        <p className="font-bold text-2xl md:text-4xl">BUll'S Blog</p>
+        <p style={{fontFamily: "Futura-bold"}} className="font-bold text-2xl md:text-4xl">BUll'S Blog</p>
       </div>
       {/* Content Section */}
       <div className="flex justify-center mb-8">

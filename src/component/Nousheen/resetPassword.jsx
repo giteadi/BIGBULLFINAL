@@ -24,7 +24,7 @@ const ResetPassword = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       {/* <Toaster /> */}
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-900">Reset Password</h2>
+        <h2 style={{fontFamily: "Futura-bold"}} className="text-3xl font-bold text-center text-gray-900">Reset Password</h2>
         {error && <div className="p-4 text-sm text-red-600 bg-red-200 border border-red-400 rounded-md">{error}</div>}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>

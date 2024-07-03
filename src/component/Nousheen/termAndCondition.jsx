@@ -24,7 +24,7 @@ const InfoBlock = () => (
 
 const TermCondition = () => (
   <div className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-bold text-center mb-8 text-red-600">Terms And Conditions</h1>
+    <h1 style={{fontFamily: "Futura-bold"}} className="text-3xl font-bold text-center mb-8 text-red-600">Terms And Conditions</h1>
     <div className="mb-4 text-center">
       <p className="mb-2 font-bold text-lg text-gray-500">Welcome to Spangle</p>
       <p className="text-left text-gray-600">

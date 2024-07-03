@@ -1,331 +1,342 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
-const countryToStatesMap = {
-    India: [
-      "Andhra Pradesh",
-      "Arunachal Pradesh",
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Goa",
-      "Gujarat",
-      "Haryana",
-      "Himachal Pradesh",
-      "Jharkhand",
-      "Karnataka",
-      "Kerala",
-      "Madhya Pradesh",
-      "Maharashtra",
-      "Manipur",
-      "Meghalaya",
-      "Mizoram",
-      "Nagaland",
-      "Odisha",
-      "Punjab",
-      "Rajasthan",
-      "Sikkim",
-      "Tamil Nadu",
-      "Telangana",
-      "Tripura",
-      "Uttar Pradesh",
-      "Uttarakhand",
-      "West Bengal",
-    ],
-    Australia: [
-      "New South Wales",
-      "Queensland",
-      "Victoria",
-      "Western Australia",
-    ],
-    UAE: ["Abu Dhabi", "Dubai", "Sharjah", "Ajman"],
-    USA: ["California", "New York", "Texas", "Florida"],
-    Canada: ["Ontario", "Quebec", "British Columbia", "Alberta"],
-    UK: ["England", "Scotland", "Wales", "Northern Ireland"],
-    Germany: ["Berlin", "Bavaria", "Hamburg", "North Rhine-Westphalia"],
-    Japan: ["Tokyo", "Osaka", "Hokkaido", "Kyoto"],
-    Brazil: ["Sao Paulo", "Rio de Janeiro", "Minas Gerais", "Bahia"],
-    China: ["Beijing", "Shanghai", "Guangdong", "Zhejiang"],
-    SouthAfrica: ["Gauteng", "Western Cape", "KwaZulu-Natal", "Eastern Cape"],
-    // Add more countries and states as needed
-  };
-  
-  
+const config = {
+  cUrl: 'https://api.countrystatecity.in/v1/countries',
+  ckey: 'NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA=='
+};
+
 const MyEnroll = () => {
-    
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        gender: '',
-        password: '',
-        cpassword: '',
-        country: '',
-        state: '',
-        city: '',
-        address: '',
-        dob: '',
-        profilePicture: null,
-    });
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    gender: "",
+    password: "",
+    cpassword: "",
+    country: "",
+    state: "",
+    city: "",
+    address: "",
+    dob: "",
+    profilePicture: null,
+  });
+
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirmPassword: false,
   });
 
-    const navigate = useNavigate();
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
 
-    const allCountries = Object.keys(countryToStatesMap);
+  const navigate = useNavigate();
 
-    const togglePasswordVisibility = (pass) => {
-        setShowPassword({...showPassword, [pass]: !showPassword[pass]});
-      };
+  const togglePasswordVisibility = (pass) => {
+    setShowPassword({ ...showPassword, [pass]: !showPassword[pass] });
+  };
 
-    const handleChange = (e) => {
-        const { name, value, type, files } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'file' ? files[0] : value,
-        });
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(formData)
-        try {
-            const response = await fetch('http://localhost:6060/api/v1/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-    
-            const data = await response.json();
-            console.log('Form submitted successfully:', data);
-    
-            // Redirect or show a success message
-            navigate('/login');
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            // Handle error (e.g., display an error message to the user)
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "file" ? files[0] : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      const response = await fetch(
+        "http://localhost:6060/api/v1/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
-    };
+      );
 
-    return (
-        <>
-            <div className="max-w-screen-xl pt-10 m-auto">
-                <div className="mb-5">
-                    <h1 className="text-4xl font-bold text-center">Enrollment Form</h1>
-                </div>
-                <div>
-                <form className="px-20 pb-5 border-1 rounded-2xl" onSubmit={handleSubmit}>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <label htmlFor="name" className="mb-2 text-xl font-semibold">Name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Your Name" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.name} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="w-full max-w-lg">
-                    <label htmlFor="email" className="mb-2 text-xl font-semibold">Email</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Your Email" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.email} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Form submitted successfully:", data);
+
+      navigate("/login");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  const fetchCountries = async () => {
+    try {
+      const response = await axios.get(config.cUrl, {
+        headers: { "X-CSCAPI-KEY": config.ckey }
+      });
+      setCountries(response.data.map(country => ({ code: country.iso2, name: country.name })));
+    } catch (error) {
+      console.error("Error loading countries:", error);
+    }
+  };
+
+  const fetchStates = async (countryCode) => {
+    try {
+      const response = await axios.get(`${config.cUrl}/${countryCode}/states`, {
+        headers: { "X-CSCAPI-KEY": config.ckey }
+      });
+      setStates(response.data.map(state => ({ code: state.iso2, name: state.name })));
+    } catch (error) {
+      console.error("Error loading states:", error);
+    }
+  };
+
+  const fetchCities = async (countryCode, stateCode) => {
+    try {
+      const response = await axios.get(`${config.cUrl}/${countryCode}/states/${stateCode}/cities`, {
+        headers: { "X-CSCAPI-KEY": config.ckey }
+      });
+      setCities(response.data.map(city => ({ code: city.iso2, name: city.name })));
+    } catch (error) {
+      console.error("Error loading cities:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  return (
+    <div className="max-w-screen-xl pt-10 mx-auto my-16">
+      <div className="mb-5">
+        <h1 className="text-5xl font-bold text-center">Enrollment Form</h1>
+      </div>
+      <form
+        className="px-6 pb-5 border-2 rounded-2xl shadow-lg"
+        onSubmit={handleSubmit}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+          <div>
+            <label htmlFor="firstName" className="block mb-1 text-lg font-semibold">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="lastName" className="block mb-1 text-lg font-semibold">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block mb-1 text-lg font-semibold">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="block mb-1 text-lg font-semibold">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="gender" className="block mb-1 text-lg font-semibold">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            >
+              <option value="">Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="password" className="block mb-1 text-lg font-semibold">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword.password ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                required
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 flex items-center px-3"
+                onClick={() => togglePasswordVisibility('password')}
+              >
+                {showPassword.password ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <label htmlFor="phone" className="mb-2 text-xl font-semibold">Enter phone Number</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        placeholder="Your phone Number" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.phone} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="w-full max-w-lg">
-                    <label htmlFor="gender" className="mb-2 text-xl font-semibold">Gender</label>
-                    <select 
-                        id="gender" 
-                        name="gender" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.gender} 
-                        onChange={handleChange} 
-                        required
-                    >
-                        <option value="" disabled>Select your gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
+          </div>
+          <div>
+            <label htmlFor="cpassword" className="block mb-1 text-lg font-semibold">Confirm Password</label>
+            <div className="relative">
+              <input
+                type={showPassword.confirmPassword ? "text" : "password"}
+                id="cpassword"
+                name="cpassword"
+                value={formData.cpassword}
+                onChange={handleChange}
+                className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                required
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 flex items-center px-3"
+                onClick={() => togglePasswordVisibility('confirmPassword')}
+              >
+                {showPassword.confirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <div>
-                    <label htmlFor="password" className="mb-2 text-xl font-semibold">Create Password</label>
-                    <input 
-                        type={showPassword.password ? "text" :"password"}
-                        id="password" 
-                        name="password" 
-                        placeholder="Create Password" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.password} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                    </div>
-                    <div className="flex justify-end">
-                        <span className="relative -mt-10 pe-3" onClick={() => togglePasswordVisibility('password')}>
-                            {!showPassword.password ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
-                        </span>
-                    </div>
-                </div>
-                <div className="w-full max-w-lg">
-                    <div>
-                    <label htmlFor="confirmPassword" className="mb-2 text-xl font-semibold">Confirm Password</label>
-                    <input 
-                        type={showPassword.confirmPassword ? "text" :"password"}
-                        id="confirmPassword" 
-                        name="cpassword" 
-                        placeholder="Confirm Password" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.cpassword} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="flex justify-end">
-                    <span className="relative -mt-10 pe-3" onClick={() => togglePasswordVisibility('confirmPassword')}>
-                        {!showPassword.confirmPassword ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <label htmlFor="country" className="mb-2 text-xl font-semibold">Choose your Country from list</label>
-                    <select 
-                        id="country" 
-                        name="country" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.country} 
-                        onChange={handleChange} 
-                        required
-                    >
-                        <option value="" disabled>Select your country</option>
-                         {allCountries.map((country) => (
-                              <option key={country} value={country}>
-                                {country}
-                              </option>
-                            ))}
-                    </select>
-                </div>
-                <div className="w-full max-w-lg">
-                    <label htmlFor="state" className="mb-2 text-xl font-semibold">Choose your State from list</label>
-                    <select 
-                        id="state" 
-                        name="state" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.state} 
-                        onChange={handleChange} 
-                        disabled={!formData.country}
-                        required
-                    >
-                        <option value="" disabled>Select your state</option>
-                        {formData.country &&
-                              countryToStatesMap[formData.country].map((state) => (
-                                <option key={state} value={state}>
-                                  {state}
-                                </option>
-                              ))}
-                    </select>
-                </div>
-            </div>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <label htmlFor="city" className="mb-2 text-xl font-semibold">Enter City</label>
-                    <input 
-                        type="text" 
-                        id="city" 
-                        name="city" 
-                        placeholder="Your City" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.city} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="w-full max-w-lg">
-                    <label htmlFor="address" className="mb-2 text-xl font-semibold">Enter Address</label>
-                    <input 
-                        type="text" 
-                        id="address" 
-                        name="address" 
-                        placeholder="Your Address" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.address} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-            </div>
-            <div className="flex justify-around my-10">
-                <div className="w-full max-w-lg">
-                    <label htmlFor="dob" className="mb-2 text-xl font-semibold">Enter Date Of Birth</label>
-                    <input 
-                        type="date" 
-                        id="dob" 
-                        name="dob" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        value={formData.dob} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div className="w-full max-w-lg">
-                    <label htmlFor="profilePicture" className="mb-2 text-xl font-semibold">Upload Profile Picture</label>
-                    <input 
-                        type="file" 
-                        id="profilePicture" 
-                        name="profilePicture" 
-                        className="w-full px-4 py-3 border-2 rounded-xl" 
-                        onChange={handleChange} 
-                    />
-                </div>
-            </div>
-            <div className="flex justify-center my-10">
-                <button type="submit" className="px-6 py-2 text-xl font-semibold text-white bg-rose-600 rounded-xl" onSubmit={handleSubmit}>Submit</button>
-            </div>
-            <div className="flex justify-center text-xl">
-                <p className="px-2">Already Have an Accound </p> <Link className="text-blue-600 hover:underline" to={'/login'}>Login</Link>
-            </div>
-        </form>
-                </div>
-            </div>
-        </>
-    )
-}
+          </div>
+          <div>
+            <label htmlFor="country" className="block mb-1 text-lg font-semibold">Country</label>
+            <select
+              id="country"
+              name="country"
+              value={formData.country}
+              onChange={async (e) => {
+                handleChange(e);
+                await fetchStates(e.target.value);
+                setCities([]);
+              }}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            >
+              <option value="">Select your country</option>
+              {countries.map((country) => (
+                <option key={country.code} value={country.code}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="state" className="block mb-1 text-lg font-semibold">State</label>
+            <select
+              id="state"
+              name="state"
+              value={formData.state}
+              onChange={async (e) => {
+                handleChange(e);
+                await fetchCities(formData.country, e.target.value);
+              }}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            >
+              <option value="">Select your state</option>
+              {states.map((state) => (
+                <option key={state.code} value={state.code}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="city" className="block mb-1 text-lg font-semibold">City</label>
+            <select
+              id="city"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            >
+              <option value="">Select your city</option>
+              {cities.map((city) => (
+                <option key={city.code} value={city.code}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="address" className="block mb-1 text-lg font-semibold">Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="dob" className="block mb-1 text-lg font-semibold">Date of Birth</label>
+            <input
+              type="date"
+              id="dob"
+              name="dob"
+              value={formData.dob}
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="profilePicture" className="block mb-1 text-lg font-semibold">Profile Picture</label>
+            <input
+              type="file"
+              id="profilePicture"
+              name="profilePicture"
+              onChange={handleChange}
+              className="w-full p-3 border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+          </div>
+        </div>
+        <div className="mt-5 text-center">
+          <button
+            type="submit"
+            className="px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          >
+            Enroll Now
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
 export default MyEnroll;

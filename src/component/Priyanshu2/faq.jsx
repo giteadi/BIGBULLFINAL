@@ -8,7 +8,7 @@ const FAQ = () => {
                 {/* Left side */}
                 <div className='flex flex-col'>
                     <div className='self-center'>
-                        <h2 className='text-7xl mb-10'>FAQ</h2>
+                        <h2 style={{fontFamily: "Futura-bold"}} className='text-7xl mb-10'>FAQ</h2>
                         <button className='text-xl border-2 rounded-3xl border-black py-2 px-7'>Testing</button>
                     </div>
                     {/* Content */}

@@ -1,5 +1,5 @@
 import image47 from './adiAssets/image 47.png';
-import manVideo from './adiAssets/fire.mp4';
+// import manVideo from './adiAssets/fire.mp4';
 import styled from 'styled-components';
 import Card from './Card';
 import CardData from './CardData';
@@ -10,7 +10,7 @@ export default function Awards() {
             <Wrapper >
                 <div>
                 <div className="background-video">
-                    <video src={manVideo} loop autoPlay muted className="video"></video>
+                    {/* <video src={manVideo} loop autoPlay muted className="video"></video> */}
                 </div>
                 <div className="cards-container">
                     {CardData.map((data) => (

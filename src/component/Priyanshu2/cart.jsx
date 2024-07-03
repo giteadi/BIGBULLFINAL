@@ -47,48 +47,48 @@ const [cartCourses, setCartCourses] = useState(Defaulcourses);
 const [charges, setCharges] = useState();
 const [calculation, setCalculation] = useState();
 
-
-
   return (
     <>     
       <section style={{minHeight: '70vh'}} className="py-6 pt-0 ">
-        <div className="container">
-        <h4 className="card-title mb-10 text-5xl font-bold">Your Course</h4>
+        <div className="max-w-screen-xl m-auto sm:px-10">
+        <h4 style={{fontFamily: "Futura-bold"}} className="card-title mb-10 text-5xl max-sm:text-center font-bold">Your Course</h4>
           <div className="flex flex-wrap">
             <div className="lg:w-3/4 w-full mb-6 lg:mb-0">
       
               <div className="card border-0">
                 <div className="p-4 border-1 rounded-lg me-10">
-                  {cartCourses.map((course) =>   <article   
+                  {cartCourses.map((course) =>  <article   
                       style={{
                       boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px'}} 
-                      className="flex flex-wrap mb-4 p-4 ">
+                      className="flex flex-wrap md:flex-nowrap mb-4 p-4 gap-6 sm:gap-0 justify-between">
                         
-                    <div className="lg:w-8/12 w-full flex ">
-                      <figure className="flex me-lg-5">
-                        <div className="flex-shrink-0 w-36">
+                    <div className="flex sm:max-lg:grow">
+                      <figure className="flex lg:me-lg-5 flex-wrap">
+                        <div className="flex-shrink-0 w-36 max-sm:w-full">
                             <img src={`${course.coverImage}`} className="object-cover rounded-md w-full h-full" alt="Item" />
                             </div>
-                        <figcaption className="ml-4">
-                          <div className="text-xl font-bold">{course.courseName}</div>
-                          <i className="text-gray-500 text-sm "> {course.nameOfInstructor} </i>
+                        <figcaption className="ml-4 md:max-w-36  ">
+                          <div className="max-sm:text-[5vw] font-bold sm:max-md:text-base max-sm:mb-5 max-sm:mt-10">{course.courseName}</div>
+                          <i className="text-gray-500 text-lg "> {course.nameOfInstructor} </i>
                           <ul className='mt-2'>
-                            <li className='list-disc text-xs ms-3'>{course.level}</li>
-                            <li className='list-disc text-xs ms-3'>{course.duration}</li>
-                            <li className='list-disc text-xs ms-3'>{course.lecture}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.level}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.duration}</li>
+                            <li className='list-disc max-sm:text-[4vw] ms-3'>{course.lecture}</li>
                           </ul>
                         </figcaption>
                       </figure>
                     </div>
-                    <div className="self-center">
+                    <div className='flex flex-row sm:flex-col md:flex-row sm:justify-center justify-end	text-center gap-y-5 grow sm:grow-0 gap-2 ml-5 sm:ml-0'>
+                    <div className="self-center min-w-16">
                       <div className="price-wrap lh-sm">
-                        <var className="price text-2xlfont-semibold ">{`₹ ${course.price}`}</var>  <br />
+                        <var className="price text-2xl font-semibold ">{`₹ ${course.price}`}</var>  <br />
                         </div>
                     </div>
-                    <div className="flex m self-center justify-self-end	grow justify-end	">
+                    <div className="flex m self-center justify-self-end sm:ms-0 md:ms-5 lg:ms-16 justify-end	">
                       <div className="space-x-2">
-                        <p href="#" className="btn btn-light text-red-500">Remove</p>
+                        <p href="#" className="btn btn-light text-2xl text-red-500">Remove</p>
                       </div>
+                    </div>
                     </div>
                   </article>)}
                 

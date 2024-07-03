@@ -69,10 +69,10 @@ const NotificationPage = () => {
     const unreadCount = notifications.filter(notification => notification.unread).length;
 
     return (
-        <div className="max-w-screen w-[50vw] mx-auto p-4 bg-gray-50 min-h-screen ">
+        <div className="lg:max-w-screen w-full 2xl:w-[50vw] mx-auto p-4.5 bg-gray-50 min-h-screen px-5 sm:px-20 ">
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-2xl font-bold">Notifications ({unreadCount})</h1>
-                <button className="text-blue-500">Mark all as read</button>
+                <h1  className="text-base sm:text-2xl font-bold">Notifications ({unreadCount})</h1>
+                <button className="text-base text-blue-500">Mark all as read</button>
             </div>
             <div className="space-y-4">
                 {notifications.map(notification => (

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { SiOpenlayers } from "react-icons/si";
 import logo from "./../../public/logo/logo.png";
 import { FaArrowRightLong } from "react-icons/fa6";
-import heroBackground from "../Assets/hero.mp4";
-import videoInMobileFrame from "../Assets/videoInMobileFrame.mp4";
-import videoInTableFrame from "../Assets/videoInTabletForm.mp4";
+// import heroBackground from "../Assets/5.mp4";
+// import heroBackground from "../Assets/hero.mp4";
+// import videoInMobileFrame from "../Assets/videoInMobileFrame.mp4";
+// import videoInTableFrame from "../Assets/videoInTabletForm.mp4";
 import tableFrame from "../Assets/tableFrame.png";
 import mobileFrame from "../Assets/mobileFrame.png";
 import bullImage from "../Assets/BULL.png";
-import coursePageCover from "../Assets/coursePageCover.webp";
 import { useRef, useEffect, useState } from "react";
 import Contact from "./Priyanshu2/contactUs";
 import Carousel from "./Priyanshu2/carousel";
@@ -18,10 +18,11 @@ import SideBar from "./sidebar";
 import LatestPage from "./Nousheen/latestPage";
 import FeatureCardSection from "./featureCardSection.jsx";
 import CoursesInLandingPage from "./courseInLandingPage.jsx";
+import videoPoster from './../Assets/videPoster.png'
 
 const createObserver = (ref, className) => {
-    const isMobile = window.innerWidth <= 530;
-    if(isMobile) return;
+  const isMobile = window.innerWidth <= 530;
+  if (isMobile) return;
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
@@ -41,8 +42,8 @@ const createObserver = (ref, className) => {
 };
 
 const closeObserver = (ref, observer) => {
-    const isMobile = window.innerWidth <= 530;
-    if(isMobile) return;
+  const isMobile = window.innerWidth <= 530;
+  if (isMobile) return;
   if (ref.current) {
     observer.unobserve(ref.current);
   }
@@ -74,12 +75,12 @@ const Home = () => {
   useEffect(() => {
     const isMobile = window.innerWidth <= 530;
 
-        const observer1 = createObserver(sectionRef1, "feature-course-page");
-        const observer2 = createObserver(sectionRef2, "sementic");
-        const observer3 = createObserver(sectionRef3, "course-animation");
-        const observer4 = createObserver(sectionRef4, "header-static");
-        const observer5 = createObserver(sectionRef5, "callToAction-animation");
-        const observer6 = createObserver(sectionRef6, "latest-blog");
+    const observer1 = createObserver(sectionRef1, "feature-course-page");
+    const observer2 = createObserver(sectionRef2, "schematic");
+    const observer3 = createObserver(sectionRef3, "course-animation");
+    const observer4 = createObserver(sectionRef4, "header-static");
+    const observer5 = createObserver(sectionRef5, "callToAction-animation");
+    const observer6 = createObserver(sectionRef6, "latest-blog");
 
     window.addEventListener("scroll", changeBackground);
     window.addEventListener("mousedown", handleClickOutside);
@@ -101,32 +102,33 @@ const Home = () => {
         eachCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
     });
-    
-      const scrollContainer = document
-                              .querySelector('.subscription-card-scroll-wrapper');
-      const scrollContent = scrollContainer
-                          .querySelector('.subscription-card-scroll-container');
 
-          if (scrollContent) {
-            console.log('here');
-              const scrollLeft = (scrollContent.scrollWidth - scrollContainer.clientWidth) / 2;
-              scrollContainer.scrollTo({
-                  left: scrollLeft,
-                  behavior: 'smooth' 
-              });
-          }
-  
+    const scrollContainer = document.querySelector(
+      ".subscription-card-scroll-wrapper"
+    );
+    const scrollContent = scrollContainer.querySelector(
+      ".subscription-card-scroll-container"
+    );
+
+    if (scrollContent) {
+      console.log("here");
+      const scrollLeft =
+        (scrollContent.scrollWidth - scrollContainer.clientWidth) / 2;
+      scrollContainer.scrollTo({
+        left: scrollLeft,
+        behavior: "smooth",
+      });
+    }
 
     return () => {
-        if(!isMobile) {
-            closeObserver(sectionRef1, observer1);
-            closeObserver(sectionRef2, observer2);
-            closeObserver(sectionRef3, observer3);
-            closeObserver(sectionRef4, observer4);
-            closeObserver(sectionRef5, observer5);
-            closeObserver(sectionRef6, observer6);
-        }
-   
+      if (!isMobile) {
+        closeObserver(sectionRef1, observer1);
+        closeObserver(sectionRef2, observer2);
+        closeObserver(sectionRef3, observer3);
+        closeObserver(sectionRef4, observer4);
+        closeObserver(sectionRef5, observer5);
+        closeObserver(sectionRef6, observer6);
+      }
 
       window.removeEventListener("scroll", changeBackground);
       window.removeEventListener("mousedown", handleClickOutside);
@@ -142,7 +144,7 @@ const Home = () => {
   return (
     <>
       <LandingPage>
-        <div className="landingPage-container overflow-hidden">
+        <div className="landingPage-container overflow-hidden m-auto">
           {/* Hero Section */}
           <div>
             <div>
@@ -152,39 +154,41 @@ const Home = () => {
               ref={sectionRef4}
               className={`${
                 navbar ? "bg-white" : ""
-              } z-50 w-full fixed py-1 sm:py-3`}
+              } z-50 w-full fixed py-1 sm:py-3 transition-all sm:ps-0 sm:px-16 sm:pr-0 duration-1000 ease-in `}
             >
               <nav
-                style={{ maxWidth: "max-width: 1920px;" }}
-                className="flex justify-between w-full m-auto"
+                className="flex justify-between w-full m-auto px-8"
               >
                 <div className="w-24 sm:w-32">
                   <img src={logo} alt="Logo" width="100%" />
                 </div>
                 <div onClick={() => setIsChecked(!isChecked)}>
                   <IoMenu
-                    className="menu-bar text-4xl sm:text-6xl"
+                    className="menu-bar max-sm:text-[42px] text-4xl sm:text-6xl transform -translate-x-1/5 "
                     color={`${navbar || isChecked ? "black" : "white"}`}
                   />
                 </div>
               </nav>
             </header>
             {/* hero main part */}
-            <div className={`hero ${!isChecked || "brightness-50"} `}>
+            <div className={`hero ${!isChecked || "brightness-50"} transition-all sm:px-10 duration-1000 ease-in`}>
               <div className="h-screen">
                 <video
-                  style={{ filter: "brightness(60%)" }}
-                  src={heroBackground}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719990295/bigbull/hero_vzz7nf.mp4"
+                  poster={videoPoster}
                   autoPlay
                   loop
                   muted
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover brightness-50 absolute w-full left-1/2 transform -translate-x-1/2 -z-[999]	"
                 ></video>
-                <div className="absolute top-0 text-white h-full flex flex-col justify-center w-full sm:w-4/5 px-2 sm:px-5">
-                  <h1 className="font-semibold text-9xl leading-tight">
+                <div
+                  style={{ fontFamily: "Futura-bold" }}
+                  className="absolute top-0 text-white h-full flex flex-col justify-center lg:w-4/5 px-2.5 sm:px-5  "
+                >
+                  <h1 className=" text-wrap	font-semibold leading-tight sm:max-lg:text-[9vw] text-[14vw] lg:text-7xl xl:text-[7rem] leading-loose">
                     Master the Stock Market with Our Expert-Led Courses
                   </h1>
-                  <p className="text-5xl font-normal mt-10 leading-snug ">
+                  <p className="text-wrap text-5xl font-normal mt-10 text-[6vw] sm:text-[4vw] lg:max-xl:text-4xl xl:text-[4rem] ">
                     Learn the secrets of stock market investing from industry
                     professionals.
                   </p>
@@ -195,15 +199,20 @@ const Home = () => {
 
           {/* feature Course Page */}
           <FeatureCardSection sectionRef={sectionRef1} />
-          {/* Sementic */}
+          {/* schematic */}
           <div
             ref={sectionRef2}
-            className="grid mb-20 lg:grid-cols-2 sm:grid-cols-1 grid gap-10 px-4 sm:px-5 sementic-container m-auto	"
+            className="grid mb-20 lg:grid-cols-2 sm:grid-cols-1 grid gap-10 px-4 sm:px-5 schematic-container m-auto	"
           >
             {/* left */}
-            <div className="flex flex-col sementic-left flex-wrap">
+            <div className="flex flex-col schematic-left flex-wrap">
               <div className="self-center">
-                <h2 className="text-5xl sm:text-7xl	mb-10 ">Schematic</h2>
+                <h2
+                  style={{ fontFamily: "Futura-bold" }}
+                  className="text-5xl sm:text-7xl	mb-10 "
+                >
+                  Schematic
+                </h2>
                 <button className="text-xl border-2 rounded-3xl border-black py-2 px-7">
                   Brand Identity
                 </button>
@@ -239,27 +248,26 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative">
-                <div className="max-w-4xl absolute sm:bull-animation hidden">
+              <div className="relative hidden lg:block">
+                <div className="max-w-4xl absolute bull-animation hidden">
                   <img src={bullImage} alt="" width="100%" />
                 </div>
               </div>
             </div>
             {/* right */}
-            <div className="content-center sementic-right relative test-tablet">
+            <div className="content-center schematic-right relative test-tablet bg-no-repeat bg-contain bg-center">
               <div className="max-w-4xl table">
-                {/* <img src={SementicRightImage} alt="" width="100%" /> */}
                 <video
-                  src={videoInTableFrame}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719989358/bigbull/videoInTabletForm_znfp7p.mp4"
                   autoPlay
                   loop
                   muted
                   className="h-full w-full object-cover"
                 ></video>
               </div>
-              <div className="mobile">
+              <div className="mobile absolute bg-center bg-no-repeat bg-contain w-1/4 top-1/2 right-[7%] p-10">
                 <video
-                  src={videoInMobileFrame}
+                  src="https://res.cloudinary.com/dq5upuxm8/video/upload/v1719989359/bigbull/videoInMobileFrame_jf8k4x.mp4"
                   autoPlay
                   loop
                   muted
@@ -272,56 +280,62 @@ const Home = () => {
           <CoursesInLandingPage sectionRef={sectionRef3} />
           {/* Subscription */}
           <div className="text-center bg-white subscription">
-            <div className="text-xl sm:text-5xl max-w-2xl my-6 m-auto leading-tight">
-              <h1 className="sm:mb-4">Choice your best </h1>
-              <span className="font-bold text-3xl me-2">
+            <div
+              style={{ fontFamily: "Futura-bold" }}
+              className="text-xl sm:text-5xl max-w-2xl my-6 m-auto leading-tight"
+            >
+              <h1 className="sm:mb-4 text-[9vw] sm:text-6xl mb-2">Choice your best </h1>
+              <span className="font-bold text-3xl md:text-4xl me-2">
                 <span className="sm:ps-4 pe-2">SUBSCRIPTION</span>PLAN
               </span>
             </div>
-            <div className="subscription-card-scroll-wrapper">
-            <div className="subscription-card-scroll-container p-8 xl:flex justify-center sm:gap-10 flex-wrap sm:py-20 sm:px-40 md:gap-20 sm:gap-20 md:max-lg:grid lg:grid-cols-2 md:max-lg:grid-cols-2 md:max-xl:px-10 flex">
-              {/* card */}
-              {Array.from({ length: 3 }).map(() => (
-                <Link to={"/SubscriptionPlans"}>
-                  <div className="card-container mb-10 sm:m-0">
-                    <div className="rounded-3xl transform transition duration-500 hover:scale-110 subscription-card border-8 card">
-                      <div className="px-5 py-4 sm:px-6 sm:p-y6 rounded-3xl ">
-                        <h2 className=" text-2xl py-1.5 px-1.5 sm:px-10 sm:text-5xl sm:px-12 sm:py-3 bg-red-700 rounded-full font-semibold ">
-                          Monthly
-                        </h2>
-                        <div className="flex flex-col ">
-                          <div className="font-semibold my-3 sm:my-7">
-                            <p className=" text-3xl sm:text-5xl">25 Rs</p>
-                            <p className="text-2xl">Per Month</p>
-                          </div>
-                          <div className="self-center mb-4 sm:mb-5">
-                            <ul className="text-lg sm:text-2xl list-disc text-start">
-                              <li>Data Analyst</li>
-                              <li>Up to 5 Member</li>
-                              <li>Get 5 GB Storage</li>
-                              <li>Monthly Report</li>
-                            </ul>
-                          </div>
-                          <button className="py-1.5 sm:py-2.5 bg-red-700 rounded-full ">
-                            <span className="bg-transparent font-semibold text-xl sm:text-2xl">
-                              Join
-                            </span>
-                          </button>
-                        </div>
+            <div className="subscription-card-scroll-wrapper w-full max-sm:overflow-scroll lg:overflow-hidden my-20">
+        <div style={{maxWidth: '1920px'}} className="subscription-card-scroll-container sm:p-8 gap-y-5 sm:gap-y-2 md:gap-y-8 justify-center grid-cols-1 sm:grid-cols-1 flex sm:grid md:py-0 lg:py-20 lg:grid-cols-3 md:max-xl:px-10 m-auto max-sm:overflow-scroll sm:overflow-hidden w-max lg:w-auto xl:px-[8%]">
+          {/* card */}
+          {Array.from({ length: 3 }).map((_, index) => (
+            <Link to="/SubscriptionPlans" key={index}>
+              <div className="card-container sm:m-0 px-6 sm:px-1 min-w-80	sm:min-72 max-w-80 lg:max-w-96 sm:m-auto mb-10 left-0">
+                <div className="rounded-3xl transform transition duration-100 hover:scale-110 group border-8 card overflow-hidden">
+                  <div className="px-6 md:px-5 py-4 sm:px-2 sm:py-6 rounded-2xl group-hover:text-white transition-all duration-1000 ease-in group-hover:bg-red-700">
+                    <h2 className="text-2xl py-1.5 px-1.5 sm:px-10 sm:py-3 bg-red-700 rounded-full font-semibold transition-all duration-1000 ease-in text-slate-50 group-hover:text-black group-hover:bg-white sm:max-xl:text-3xl">
+                      Monthly
+                    </h2>
+                    <div className="flex flex-col">
+                      <div className="font-semibold my-3 sm:my-7">
+                        <p className="text-3xl sm:text-5xl">25 Rs</p>
+                        <p className="text-2xl">Per Month</p>
                       </div>
+                      <div className="self-center mb-4 sm:mb-5">
+                        <ul className="text-lg sm:max-md:text-1xl md:text-2xl list-disc text-start">
+                          <li>Data Analyst</li>
+                          <li>Up to 5 Member</li>
+                          <li>Get 5 GB Storage</li>
+                          <li>Monthly Report</li>
+                        </ul>
+                      </div>
+                      <button className="py-1.5 sm:py-2.5 bg-red-700 rounded-full transition-all duration-1000 ease group-hover:bg-white">
+                        <span className="bg-transparent font-bold text-xl sm:text-2xl text-slate-50 transition-all duration-1000 ease group-hover:text-black">
+                          Join
+                        </span>
+                      </button>
                     </div>
                   </div>
-                </Link>
-              ))}
-            </div>
-            </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
           </div>
           {/* Latest Blogs */}
           <div
             ref={sectionRef6}
             className="flex justify-center flex-col pt-10 sm:pt-24"
           >
-            <h1 className="text-5xl sm:text-8xl text-center font-semibold">
+            <h1
+              style={{ fontFamily: "Futura-bold" }}
+              className="text-5xl sm:text-8xl text-center font-semibold"
+            >
               Latest Blogs
             </h1>
             <LatestPage />
@@ -329,7 +343,8 @@ const Home = () => {
               <span>
                 <Link
                   to={"/blogs"}
-                  className=" view-all inline-flex gap-4 mb-16 sm:mb-20 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
+                  className="view-all hover:scale-90 transition-all duration-500 shadow-2xl
+ inline-flex gap-4 mb-16 sm:mb-20 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
                 >
                   <SiOpenlayers style={{ margin: "auto" }} />
                   View All
@@ -340,49 +355,66 @@ const Home = () => {
           {/* Call to Actions */}
           <div
             ref={sectionRef5}
-            className="px-40 lg:px-20 py-20 call-to-action"
+            className="sm:px-40 lg:px-20 sm:py-10 pb-0 call-to-action max-sm:text-center text-start p-6"
           >
             <div className="mb-10 sm:mb-20 ">
-              <h1 className="text-5xl sm:text-7xl	mb-10  ">Call to Action</h1>
+              <h1
+                style={{ fontFamily: "Futura-bold" }}
+                className="text-5xl sm:text-7xl	mb-10  "
+              >
+                Call to Action
+              </h1>
               <p className="text-xl sm:text-4xl">
                 Join Now and Start Your Journey to Financial Mastery!
               </p>
             </div>
             <div>
-              <h1 className="text-5xl sm:text-7xl	mb-3 sm:mb-10 ">What we do</h1>
+              <h1
+                style={{ fontFamily: "Futura-bold" }}
+                className="text-5xl sm:text-7xl	mb-3 sm:mb-10 "
+              >
+                What we do
+              </h1>
               <p className="text-xl sm:text-4xl">
                 Elevate your brand and make your mark in history.
               </p>
             </div>
-            <div ref={trainingGuideRef} className="mt-20 training-guide training-guide-wrapper">
-              <div className=" training-guide-container  guideLeft slider">
-                <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center">
-                {Array.from({ length: 3 }).map(() => (
-                  <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide">
-                    <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
-                      <button>Trading Guide</button>
-                      <FaArrowRightLong />
-                    </div>
-                  </div>
-                ))}
+            <div
+              ref={trainingGuideRef}
+              className="training-guide training-guide-wrapper w-max sm:w-auto sm:max-lg:overflow-auto m-auto pt-20"
+            >
+               <div className="training-guide-container flex sm:max-md:block justify-center guideLeft mt-10 slider justify-center sm:max-lg:overflow-auto max-lg:pb-10  max-md:w-max m-auto max-sm:pt-10">
+                <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center sm:max-lg:overflow-auto relative max-lg:pb-10 max-md:w-max w-full">
+                  {Array.from({ length: 3 }).map(() => (
+                    <>
+                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52">
+                        <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
+                          <button>Trading Guide</button>
+                          <FaArrowRightLong />
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
               </div>
-              </div>
-              <div className=" training-guide-container  mt-5 guidRight slider">
-              <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center">
-                {Array.from({ length: 3 }).map(() => (
-                  <div className="rounded-3xl border-2 border-black flex w-80 2xl:w-96 py-3 slide">
-                    <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
-                      <button>Trading Guide</button>
-                      <FaArrowRightLong />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <div className="training-guide-container flex sm:max-md:block justify-center guideRight lg:pt-5 slider justify-center sm:max-lg:overflow-auto max-lg:pb-10  max-md:w-max m-auto ">
+                <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center sm:max-lg:overflow-auto relative max-lg:pb-10 max-md:w-max w-full">
+                  {Array.from({ length: 3 }).map(() => (
+                    <>
+                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52">
+                        <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
+                          <button>Trading Guide</button>
+                          <FaArrowRightLong />
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
           <div>
-            <div className="testimonial">
+            <div className=" sm:h-auto testimonial">
               <Carousel />
             </div>
             <Contact />
@@ -394,86 +426,13 @@ const Home = () => {
 };
 export default Home;
 const LandingPage = styled.div`
-  overflow: hidden;
-
-  .landingPage-container {
-    max-width: 1920px;
-    margin: auto;
-  }
-
-  nav {
-    padding: 0 30px;
-  }
-  .view-all:hover {
-    scale: 0.9;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transition: all 0.5s;
-  }
-
-  .wrapper {
-    width: 40vw;
-    transition: right 0.5s ease-in-out, clip-path 0.5s ease-in-out;
-    clip-path: inset(0 0 0 100%); 
-  }
-
-  .active {
-    clip-path: inset(0 0 0 0);     
-    }
-  .wrapper ol {
-    list-style: none;
-}
-  .wrapper ol li {
-    font-size: 3vw;
-    line-height: 1.2;
-    font-weight: 500;
-    color: black;
-    margin: 50px 0;
-    font-family: "Lora", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-  }
-
-  .wrapper ol li:hover {
-    transform: scale(1.3);
-    transition: all 0.3s ease-in-out;
-  }
-
-  #invertedcursor {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: #fff;
-    border-radius: 50%;
-    top: var(--y, 0);
-    left: var(--x, 0);
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    mix-blend-mode: difference;
-    transition: transform 0.2s;
-  }
-  header,
-  .hero {
-    padding: 0 70px;
-    transition: all 1s ease;
-  }
-  .hero video {
-    position: absolute;
-    z-index: -999;
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .hero h1 {
-    font-size: 6.2vw;
-  }
-  .hero p {
-    font-size: 4vw;
-  }
-
   
+.landingPage-container, nav {
+    max-width: 1920px;
+}
 
-  .sementic .sementic-left {
+/* Scematic section */
+  .schematic .schematic-left {
     animation: 1.5s fadeleft;
   }
 
@@ -488,7 +447,7 @@ const LandingPage = styled.div`
     }
   }
 
-  .sementic .sementic-right {
+  .schematic .schematic-right {
     animation: 1.5s faderight;
   }
 
@@ -503,7 +462,7 @@ const LandingPage = styled.div`
     }
   }
 
-  .sementic .bull-animation {
+  .schematic .bull-animation {
     display: block;
     animation: 1s bullAni ease-in;
     z-index: -20;
@@ -518,136 +477,25 @@ const LandingPage = styled.div`
       transform: translate(0%);
     }
   }
-
-  .course-card {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  .test-tablet {
+    background-image: url(${tableFrame});
   }
-  .subcription-card li {
-    margin-bottom: 16px;
-  }
-  .latest-blog h2 {
-    line-height: 3.5rem;
-  }
-  .latest-blog .blog-left {
-    animation: 1.5s blogfromleft ease-in;
+  .test-tablet > .table {
+    padding: 6%;
   }
 
-  @keyframes blogfromleft {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(0%);
-    }
+  .test-tablet .mobile {
+    background-image: url(${mobileFrame});
   }
 
-  .latest-blog .blog-right {
-    animation: 1.5s blogfromright ease-in;
-  }
-  @keyframes blogfromright {
-    from {
-      transform: translateX(50%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-
-  .course-page {
-    background-image: url(${coursePageCover});
-    background-size: 100% 430px;
-    background-position: top;
-  }
-  .course-animation .course-card-center {
-    animation: 1s slideCenter;
-  }
-  .course-animation .course-card-left {
-    animation: 1s slideLeft;
-  }
-  .course-animation .course-card-right {
-    animation: 1s slideRight;
-  }
-
-  @keyframes slideCenter {
-    from {
-      transform: translateY(20%);
-    }
-    to {
-      transform: translateY(0%);
-    }
-  }
-  @keyframes slideLeft {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-  @keyframes slideRight {
-    from {
-      transform: translateX(50%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-
-  .course-page-nav {
-    display: flex;
-    font-size: 18px;
-  }
-  .course-page-nav > span {
-    display: flex;
-    align-items: center;
-  }
-  .course-page-right-desc li {
-    display: flex;
-    justify-content: space-between;
-  }
-
+/* Subscription Card Section */
   .subscription-card {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
       rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
-  .subscription-card:hover h2 {
-    color: black;
-    background-color: white;
-    transition: all 1s ease;
-  }
-  .subscription-card span,
-  .subscription-card h2 {
-    color: white;
-  }
-  .subscription-card:hover button {
-    background-color: white;
-    transition: all 1s ease;
-  }
-  .subscription-card:hover span {
-    background-color: white;
-    transition: all 1s ease;
-  }
-  .subscription-card:hover span {
-    color: black;
-  }
-  .subscription-card:hover .subscription-card h2 {
-    color: black;
-  }
-  .subscription-card:hover > div {
-    color: white;
-    font-weight: 600;
-    background-color: rgb(185 28 28);
-    transition: all 1s ease;
-  }
-  .circle {
-    width: 100px;
-    height: 100px;
-    background: #ffffff;
-    border-radius: 50%;
-    position: absolute;
-    mix-blend-mode: difference;
-  }
-  
+
+
+  /* Call to Action Section*/
   .callToAction-animation {
     animation: 2s callToActionRL;
   }
@@ -660,8 +508,7 @@ const LandingPage = styled.div`
       transform: translateX(0%);
     }
   }
-
-  .callToAction-animation .guidRight {
+  .callToAction-animation .guideRight {
     animation: 2s callToActionRLguidRight;
   }
   @keyframes callToActionRLguidRight {
@@ -672,154 +519,27 @@ const LandingPage = styled.div`
       transform: translateX(0%);
     }
   }
-
+  /* Card Corner Animation */
   .card-container {
     perspective: 1000px;
   }
 
-  .card {
-    overflow: hidden;
-    transition: transform 0.1s ease;
-  }
-  
-  .blackshadow {
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    filter: brightness(50%);
-    background-color: transparent;
-    z-index: 1;
-  }
-
-  .test-tablet {
-    position: relative;
-    background-image: url(${tableFrame});
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .test-tablet > .table {
-    padding: 6%;
-  }
-
-  .test-tablet .mobile {
-    position: absolute;
-    background-image: url(${mobileFrame});
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 25%;
-    top: 50%;
-    right: 7%;
-    padding: 40px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .wrapper {
-      width: 100%;
-    }
-    .wrapper ol li {
-      font-size: 40px;
-    }
-  }
-
   @media screen and (max-width: 530px) {
-    .testimonial {
-      height: 70vh;
-    }
-    nav {
-      padding: 0;
-    }
-    .menu-bar {
-      transform: translateX(-20%);
-    }
-    .wrapper ol li {
-      margin: 36px 0;
-    }
-    .wrapper ol li {
-      font-size: 35px;
-    }
-    .hero h1 {
-      font-size: 14vw;
-      /* line-height: 1.2px; */
-    }
-    .hero p {
-      font-size: 6vw;
-    }
-    .sementic-container {
-      padding: 0px 1px;
-    }
-    .subscription > div:nth-child(1) {
-      font-size: 9vw;
-    }
-    .training-guide > div {
-      justify-content: center;
-    }
-    .call-to-action {
-      text-align: center;
-      padding: 0 10px;
-    }
+
     .test-tablet .mobile {
       padding: 15px;
     }
-    header,
-    .hero {
-      padding: 0;
-      transition: all 1s ease;
-    }
-    .subscription-card-scroll-wrapper, .training-guide-wrapper {
-      overflow: scroll;
-    }
-    .training-guide-wrapper  {
-      width: max-content;
-    }
-
-    .subscription-card-scroll-container, .training-guide-container{
-      width: max-content;
-      overflow: scroll;
-    }
-    .training-guide-container {
-      display: flex;
-    }
-    .subscription-card-scroll-container > a > div{
-      margin: 0 50px;
-    }
-    /* This seciton is make scroll to training guide seciton  */
-    @-webkit-keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 1));
-      }
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 1));
-      }
-    }
 
     .slider {
-      background: white;
-      /* box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125); */
-      /* height: 200px; */
-      margin: auto;
-      overflow: hidden;
-      position: relative;
-      width: 365px;
+      /* background: white; */
+      width: 665px;
     }
 
-    .slider::before, .slider::after {
-      /* background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%); */
+    .slider::before,
+    .slider::after {
       content: "";
-      /* height: 200px; */
       position: absolute;
-      width: 300px;
+      width: 600px;
       z-index: 2;
     }
 
@@ -840,30 +560,27 @@ const LandingPage = styled.div`
       display: flex;
       width: calc(300px * 3);
     }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-300px * 1));
+      }
+    }
+
     .slide {
       margin: 0 25px;
     }
-    /* .slider .slide {
-      height: 200px;
-      width: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    } */
-
-    /* .slide-content {
-      border: 2px solid black;
-      border-radius: 1.5rem;
-      width: 80%;
-      height: 80%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    } */
-/* 
-    .slide-content button {
-      font-size: 1.25rem;
+  }
+  
+  @media screen and (min-width: 600px) and (max-width: 1024px) {
+    .call-to-action {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    /* .slide-track {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     } */
   }
 `;

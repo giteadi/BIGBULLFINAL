@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaChevronDown, FaChevronUp, FaGift, FaExchangeAlt, FaBan, FaFileInvoice, FaMoneyBillWave, FaEnvelope, FaHeadset, FaChalkboardTeacher, FaBars } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const faqData = [
   {
@@ -51,11 +52,11 @@ const FAQItem = ({ faq, index, toggleFAQ }) => {
         className="w-full text-left flex justify-between items-center" 
         onClick={() => toggleFAQ(index)}
       >
-        <span className="flex items-center text-lg font-medium">
+        <span className="flex items-center text-xl font-medium">
           {faq.icon}
-          <span className="ml-2">{faq.question}</span>
+          <span className="ml-2 text-lg">{faq.question}</span>
         </span>
-        <span>{faq.open ? <FaChevronUp /> : <FaChevronDown />}</span>
+        <span className='text-xl'>{faq.open ? <FaChevronUp /> : <FaChevronDown />}</span>
       </button>
       {faq.open && <p className="mt-2 text-gray-700">{faq.answer}</p>}
     </div>
@@ -78,16 +79,16 @@ const HelpPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8 px-4 md:px-0">
-      <main className="w-full max-w-4xl bg-white rounded-lg shadow p-8 mt-8">
-        <h1 className="text-3xl font-bold text-center">Frequently asked questions</h1>
+    <div className="min-h-screen bg-white flex flex-col items-center py-8 px-4 md:px-0">
+      <main className="w-full max-w-4xl bg-white rounded-lg shadow max-sm:p-2.5 p-8 mt-8">
+        <h1 style={{fontFamily: "Futura-bold"}} className="text-3xl font-bold text-center">Frequently asked questions</h1>
         <p className="text-gray-600 text-center mt-2">
           These are the most commonly asked questions about Untitled UI and billing.
-          Can’t find what you’re looking for? <a href="#" className="text-blue-600">Chat to our friendly team!</a>
+          Can’t find what you’re looking for? <Link className="text-blue-600">Chat to our friendly team!</Link>
         </p>
         <div className="mt-8">
           {faqs.map((faq, index) => (
-            <FAQItem key={index} index={index} faq={faq} toggleFAQ={toggleFAQ} />
+            <FAQItem key={index} index={index} faq={faq} toggleFAQ={toggleFAQ} className="" />
           ))}
         </div>
       </main>

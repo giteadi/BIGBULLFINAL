@@ -26,7 +26,7 @@ const Verification = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-900">Verify Your Account</h2>
+        <h2 style={{fontFamily: "Futura-bold"}} className="text-2xl font-bold text-center text-gray-900">Verify Your Account</h2>
         {error && <div className="p-2 text-sm text-red-600 bg-red-200 rounded">{error}</div>}
         {success && <div className="p-2 text-sm text-green-600 bg-green-200 rounded">{success}</div>}
         <form className="space-y-6" onSubmit={handleSubmit}>
