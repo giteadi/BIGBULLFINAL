@@ -183,12 +183,12 @@ const Home = () => {
                 ></video>
                 <div
                   style={{ fontFamily: "Futura-bold" }}
-                  className="absolute top-0 text-white h-full flex flex-col justify-center lg:w-4/5 px-2.5 sm:px-5 "
+                  className="absolute top-0 text-white h-full flex flex-col justify-center lg:w-4/5 px-2.5 sm:px-5  "
                 >
-                  <h1 className=" text-wrap	 font-semibold leading-tight sm:max-lg:text-[9vw] text-[14vw] lg:text-8xl xl:text-9xl">
+                  <h1 className=" text-wrap	font-semibold leading-tight sm:max-lg:text-[9vw] text-[14vw] lg:text-7xl xl:text-[7rem] leading-loose">
                     Master the Stock Market with Our Expert-Led Courses
                   </h1>
-                  <p className=" text-wrap	 text-5xl font-normal mt-10 leading-snug text-[6vw] sm:text-[4vw] ">
+                  <p className="text-wrap text-5xl font-normal mt-10 text-[6vw] sm:text-[4vw] lg:max-xl:text-4xl xl:text-[4rem] ">
                     Learn the secrets of stock market investing from industry
                     professionals.
                   </p>

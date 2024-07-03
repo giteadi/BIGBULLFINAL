@@ -3,9 +3,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SideBar = ({ checked, setChecked = '' }) => {
+  const [userLockedIn, setUserLockedIn] = useState(false);
+
+  function fetchUser () {
+    let getUser = localStorage.getItem('bigbullUser');
+    console.log(getUser);
+    if(getUser) setUserLockedIn(true);                      
+  }
+
   const handleClick = () => {
     setChecked(!checked);
+    console.log('heere');
   }
+  useEffect(() => {
+    fetchUser();
+  })
   return (
     <>
       <Contaienr>
@@ -26,18 +38,32 @@ const SideBar = ({ checked, setChecked = '' }) => {
               <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
                 <Link to="/about">About</Link>
               </li>
+              <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
+                <Link to="/about">Blogs</Link>
+              </li>
               <li onClick={handleClick}  className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
                 <Link to="/ContactUs">Contact Us</Link>
               </li>
-              <li onClick={handleClick}  className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
-                <Link to="/Cart">Cart</Link>
-              </li>
-              <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
-                <Link to="/EnrollForm">Enroll Now</Link>
-              </li>
-              <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
-                <Link to="/login">Log In</Link>
-              </li>
+              {
+                  !userLockedIn 
+                  ? <>
+                          <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
+                          <Link to="/EnrollForm">Enroll Now</Link>
+                        </li>
+                        <li onClick={handleClick} className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
+                          <Link to="/login">Log In</Link>
+                        </li>
+                    </> 
+                  : <>
+                      <li onClick={handleClick}  className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
+                    <Link to="/Cart">Cart</Link>
+                  </li>
+                  <li onClick={handleClick}  className="sm:my-10 xl:my-16 text-3xl my-9 sm:text-4xl md:text-[3vw] leading-7 font-medium text-black font-serif hover:scale-125 transition-all duration-300 ease-in-out">
+                    <Link to="/profile">Profile</Link>
+                  </li>
+                    </>
+              }
+              
             </ol>
           </div>
         </div>
