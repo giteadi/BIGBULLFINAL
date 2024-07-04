@@ -329,7 +329,7 @@ const MyEnroll = () => {
         <div className="mt-5 text-center">
           <button
             type="submit"
-            className="px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="px-6 py-3 text-lg font-semibold text-white bg-red-700 hover:bg-red-800   rounded  focus:outline-none focus:ring-2 focus:ring-blue-600"
           >
             Enroll Now
           </button>

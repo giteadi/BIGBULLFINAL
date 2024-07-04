@@ -112,13 +112,17 @@ const Home = () => {
 
     if (scrollContent) {
       console.log("here");
-      const scrollLeft =
-        (scrollContent.scrollWidth - scrollContainer.clientWidth) / 2;
-      scrollContainer.scrollTo({
-        left: scrollLeft,
-        behavior: "smooth",
-      });
+      setTimeout(() => {
+        const scrollLeft = (scrollContainer.scrollWidth - scrollContainer.clientWidth) / 2;
+
+        // Scroll the container to the center position
+        scrollContent.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth', // Optional: adds a smooth scrolling effect
+        });
+      }, 0);
     }
+    
 
     return () => {
       if (!isMobile) {
@@ -185,10 +189,10 @@ const Home = () => {
                   style={{ fontFamily: "Futura-bold" }}
                   className="absolute top-0 text-white h-full flex flex-col justify-center lg:w-4/5 px-2.5 sm:px-5  "
                 >
-                  <h1 className=" text-wrap	font-semibold leading-tight sm:max-lg:text-[9vw] text-[14vw] lg:text-7xl xl:text-[7rem] leading-loose">
+                  <h1 className=" text-wrap	font-semibold leading-tight sm:max-lg:text-[9vw] text-[14vw] lg:text-7xl xl:text-8xl 2xl:text-9xl ">
                     Master the Stock Market with Our Expert-Led Courses
                   </h1>
-                  <p className="text-wrap text-5xl font-normal mt-10 text-[6vw] sm:text-[4vw] lg:max-xl:text-4xl xl:text-[4rem] ">
+                  <p className="text-wrap text-5xl font-normal mt-10 text-[6vw] sm:text-[4vw] lg:max-xl:text-4xl xl:text-5xl">
                     Learn the secrets of stock market investing from industry
                     professionals.
                   </p>
@@ -294,8 +298,8 @@ const Home = () => {
           {/* card */}
           {Array.from({ length: 3 }).map((_, index) => (
             <Link to="/SubscriptionPlans" key={index}>
-              <div className="card-container sm:m-0 px-6 sm:px-1 min-w-80	sm:min-72 max-w-80 lg:max-w-96 sm:m-auto mb-10 left-0">
-                <div className="rounded-3xl transform transition duration-100 hover:scale-110 group border-8 card overflow-hidden">
+              <div className="card-container sm:m-0 px-6 sm:px-1 min-w-80 sm:min-72 max-w-80 lg:max-w-96 sm:m-auto mb-10 left-0">
+                <div className="rounded-3xl transform transition duration-100 hover:scale-110 md:group border-8 card overflow-hidden">
                   <div className="px-6 md:px-5 py-4 sm:px-2 sm:py-6 rounded-2xl group-hover:text-white transition-all duration-1000 ease-in group-hover:bg-red-700">
                     <h2 className="text-2xl py-1.5 px-1.5 sm:px-10 sm:py-3 bg-red-700 rounded-full font-semibold transition-all duration-1000 ease-in text-slate-50 group-hover:text-black group-hover:bg-white sm:max-xl:text-3xl">
                       Monthly
@@ -327,6 +331,7 @@ const Home = () => {
         </div>
       </div>
           </div>
+
           {/* Latest Blogs */}
           <div
             ref={sectionRef6}
@@ -355,27 +360,27 @@ const Home = () => {
           {/* Call to Actions */}
           <div
             ref={sectionRef5}
-            className="sm:px-40 lg:px-20 sm:py-10 pb-0 call-to-action max-sm:text-center text-start p-6"
+            className="sm:px-40 lg:px-20 sm:py-10 pb-0 call-to-action max-sm:text-center text-start p-6 "
           >
-            <div className="mb-10 sm:mb-20 ">
+            <div className="mb-10 sm:mb-20 md:max-lg:px-10">
               <h1
                 style={{ fontFamily: "Futura-bold" }}
-                className="text-5xl sm:text-7xl	mb-10  "
+                className="text-5xl sm:text-7xl mb-10 md:max-lg:text-6xl"
               >
                 Call to Action
               </h1>
-              <p className="text-xl sm:text-4xl">
+              <p className="text-xl sm:text-4xl md:max-lg:text-3xl md:max-lg:px-2">
                 Join Now and Start Your Journey to Financial Mastery!
               </p>
             </div>
             <div>
               <h1
                 style={{ fontFamily: "Futura-bold" }}
-                className="text-5xl sm:text-7xl	mb-3 sm:mb-10 "
+                className="text-5xl sm:text-7xl mb-3 sm:mb-10 md:max-lg:text-6xl md:max-lg:px-10 "
               >
                 What we do
               </h1>
-              <p className="text-xl sm:text-4xl">
+              <p className="text-xl sm:text-4xl md:max-lg:text-3xl md:max-lg:px-10">
                 Elevate your brand and make your mark in history.
               </p>
             </div>
@@ -383,11 +388,11 @@ const Home = () => {
               ref={trainingGuideRef}
               className="training-guide training-guide-wrapper w-max sm:w-auto sm:max-lg:overflow-auto m-auto pt-20"
             >
-               <div className="training-guide-container flex sm:max-md:block justify-center guideLeft mt-10 slider justify-center sm:max-lg:overflow-auto max-lg:pb-10  max-md:w-max m-auto max-sm:pt-10">
-                <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center sm:max-lg:overflow-auto relative max-lg:pb-10 max-md:w-max w-full">
+               <div className="training-guide-container flex sm:max-md:block justify-center guideLeft mt-10 slider justify-center sm:max-lg:overflow-auto max-lg:pb-10 md:max-lg:pb-0  max-md:w-max m-auto max-sm:pt-10">
+                <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center sm:max-lg:overflow-auto relative max-lg:pb-10 max-md:w-max w-full ">
                   {Array.from({ length: 3 }).map(() => (
                     <>
-                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52">
+                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52 md:max-lg:m-auto">
                         <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
                           <button>Trading Guide</button>
                           <FaArrowRightLong />
@@ -401,7 +406,7 @@ const Home = () => {
                 <div className="slide-track grid 2xl:grid-cols-3 lg:grid-cols-3 gap-10 items-center sm:max-lg:overflow-auto relative max-lg:pb-10 max-md:w-max w-full">
                   {Array.from({ length: 3 }).map(() => (
                     <>
-                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52">
+                      <div className="rounded-3xl border-2 border-black flex w-80 lg:w-72 2xl:w-96 py-3 slide min-w-52 md:max-lg:m-auto">
                         <div className="flex items-center m-auto text-xl gap-3 sm:gap-5">
                           <button>Trading Guide</button>
                           <FaArrowRightLong />
@@ -413,6 +418,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
           <div>
             <div className=" sm:h-auto testimonial">
               <Carousel />

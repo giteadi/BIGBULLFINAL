@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { SiOpenlayers } from "react-icons/si";
 import { useEffect, useRef } from "react";
 
+
 const courseCardData = [
   {
     imageUrl: courseThumbain,
@@ -13,7 +14,7 @@ const courseCardData = [
       "From Setup to Deployment, this course covers everything! You'll learn it all.",
     category: "Programming Language",
     level: "Beginner",
-    instructor: "Name",
+    instructor: "Mr.Ramesh",
     price: 599,
     currency: "Rs.",
     rating: 3,
@@ -26,7 +27,7 @@ const courseCardData = [
       "From Setup to Deployment, this course covers everything! You'll learn it all.",
     category: "Programming Language",
     level: "Beginner",
-    instructor: "Name",
+    instructor: "Mr. sumesh",
     price: 599,
     currency: "Rs.",
     rating: 3,
@@ -39,7 +40,7 @@ const courseCardData = [
       "From Setup to Deployment, this course covers everything! You'll learn it all.",
     category: "Programming Language",
     level: "Beginner",
-    instructor: "Name",
+    instructor: "Mr.rakesh",
     price: 599,
     currency: "Rs.",
     rating: 3,
@@ -47,9 +48,11 @@ const courseCardData = [
   },
 ];
 
+
 const CoursesInLandingPage = ({ sectionRef }) => {
   // console.log('render');
   const scrollRef = useRef(null);
+
 
   useEffect(() => {
     const card = document.querySelectorAll(".card-stretched");
@@ -60,28 +63,31 @@ const CoursesInLandingPage = ({ sectionRef }) => {
         const x = e.clientX - rect.left; // x position within the element.
         const y = e.clientY - rect.top; // y position within the element.
 
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
+
         const rotateX = ((y - centerY) / centerY) * 5;
         const rotateY = ((x - centerX) / centerX) * -5;
+
 
         eachCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
     });
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current;
-      const scrollContent = scrollContainer.firstElementChild;
 
-      // Calculate the center position
-      const scrollLeft =
-        (scrollContent.scrollWidth - scrollContainer.clientWidth) / 2;
+      // Ensure the container is fully rendered before calculating the scroll position
+      setTimeout(() => {
+        const scrollLeft = (scrollContainer.scrollWidth - scrollContainer.clientWidth) / 2;
 
-      // Scroll to the center position
-      scrollContainer.scrollTo({
-        left: scrollLeft,
-        behavior: "smooth", // Optional: adds a smooth scrolling effect
-      });
+        // Scroll the container to the center position
+        scrollContainer.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth', // Optional: adds a smooth scrolling effect
+        });
+      }, 0);
     }
     return () => {
       card.forEach((eachCard) => {
@@ -106,7 +112,7 @@ const CoursesInLandingPage = ({ sectionRef }) => {
           <div ref={scrollRef} className="makeScrollable">
             <div
               ref={sectionRef}
-              className="course-card-scroll md:p-8 lg:p-0 py-10 gap-2 sm:grid flex grid-cols-1 sm:max-lg:gap-10 lg:grid-cols-3 xl:flex flex-wrap justify-center m-auto xl:max-w-screen-2xl"
+              className="course-card-scroll md:p-8 lg:p-0 py-10 gap-2.5 sm:grid flex grid-cols-1 sm:max-lg:gap-8 lg:grid-cols-3 xl:flex flex-wrap justify-center m-auto xl:max-w-screen-2xl"
             >
               {/* card */}
               {courseCardData.map((card) => (
@@ -120,33 +126,34 @@ const CoursesInLandingPage = ({ sectionRef }) => {
                         <img
                           src={card.imageUrl}
                           alt=""
-                          className="h-full object-cover border-8  border-white rounded-2xl	"
+                          className="h-full object-cover border-8  border-white rounded-2xl "
                         />
                       </div>
                       {/* content */}
                       <div className="">
-                        <div className=" max-w-64 sm:max-w-80 py-1 sm:py-2 px-3">
+                        <div className=" max-w-64 sm:max-w-80 py-1 sm:py-2 px-2">
                           <button className="bg-[#2495D6] text-white py-0.5 sm:py-1 px-3 rounded-md">
                             {card.level}
                           </button>
-                          <p className="text-[#2495D6] text-sm sm:text-base my-2 sm:my-2.5 ">
+                          {/* <p className="text-[#2495D6] text-sm sm:text-base my-2 sm:my-2.5 ">
                             {card.category}
-                          </p>
+                          </p> */}
                           <p className="font-bold text-base sm:text-xl font-bold">
                             {card.title}
                           </p>
-                          <p className="text-sm sm:text-base font-semibold my-1 sm:my-2.5 ">
+                          <p className="text-sm sm:text-sm font-semibold my-1 sm:my-2.5 ">
                             {card.description}
                           </p>
                         </div>
 
-                        <div className="flex bg-gray-900 text-white justify-between px-2 sm:px-4 py-1 rounded-md	text-sm">
+
+                        <div className="flex bg-gray-900 text-white justify-between px-2 sm:px-4 py-1.5 rounded-md  text-ms">
                           <span>Instructor</span>
                           <span>{card.instructor}</span>
                         </div>
                         <div className="p-4 flex justify-between font-semibold py-1 px-2">
                           <div>
-                            <p className="mb-2 text-base sm:text-xl">
+                            <p className="mb-2 text-base sm:text-lg">
                               Price Value
                             </p>
                             <div className="flex">
@@ -195,6 +202,7 @@ const CoursesInLandingPage = ({ sectionRef }) => {
   );
 };
 
+
 export default CoursesInLandingPage;
 const Container = styled.div`
   .course-card {
@@ -213,12 +221,13 @@ const Container = styled.div`
     perspective: 1000px;
   }
 
+
   .card-stretched {
     overflow: hidden;
     transition: transform 0.1s ease;
     /* box-shadow: rgb(253, 9, 9) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
   }
-  
+ 
   .course-animation .course-card-center {
     animation: 1s slideCenter;
   }
@@ -228,6 +237,7 @@ const Container = styled.div`
   .course-animation .course-card-right {
     animation: 1s slideRight;
   }
+
 
   @keyframes slideCenter {
     from {
@@ -254,7 +264,8 @@ const Container = styled.div`
     }
   }
 
-  
+
+ 
   @media screen and (max-width: 600px) {
     .makeScrollable {
       overflow: scroll;
@@ -269,3 +280,8 @@ const Container = styled.div`
     }
   }
 `;
+
+
+
+
+

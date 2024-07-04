@@ -5,7 +5,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
+
+
+
+
+
+
 const About = () => {
+
+
+
 
   const aboutPost = [
     {
@@ -21,7 +30,13 @@ const About = () => {
       imgSrc: "https://static.vecteezy.com/system/resources/previews/019/857/839/non_2x/business-vision-concepts-global-economic-recession-or-stagnation-stock-market-or-asset-slump-economic-growth-flat-illustrations-vector.jpg"
     }
   ];
-  
+ 
+
+
+
+
+
+
 
 
   useEffect(() => {
@@ -29,11 +44,20 @@ const About = () => {
       setAnimate(false);
     }, 300);
 
+
+
+
     return () => clearTimeout(timer);
   }, []);
 
+
+
+
   return (
     <AboutSection>
+
+
+
 
     <div className="container mx-auto relative lg:mt-5">
       {/* Bg Video */}
@@ -41,20 +65,20 @@ const About = () => {
       <h1 style={{fontFamily: "Futura-bold"}} className={`text-black flex items-center justify-center text-5xl sm:text-8xl  py-4 transform transition-transform duration-1000 font-bold`}>
         About Us
       </h1>
-      <div className="max-sm:mt-0 mt-8 rounded-lg relative z-10 ">
+      <div className="max-sm:mt-0 mt-8 rounded-lg relative z-0 ">
       <div className="container mx-auto max-w-screen-xl">
        <div key={0} className={`flex flex-col md:flex-row items-center gap-10 max-sm:mt-0 my-10 blog-left `}>
           <div className="md:ml-6 md:mr-6 mt-4 md:mt-0">
-            <h2 className="text-md text-4xl	text-red-700 font-bold max-sm:text-center">{aboutPost[0].title}</h2>
+            <h2 className="text-md text-4xl text-red-700 font-bold max-sm:text-center">{aboutPost[0].title}</h2>
             {/* <h2 className="text-xxl text-2xl font-bold my-3">{aboutPost[0].subtitle}</h2> */}
-            <p className="mt-2 text-gray-600 text-1xl leading-loose	">{aboutPost[0].description}</p>
+            <p className="mt-2 text-gray-600 text-1xl leading-loose ">{aboutPost[0].description}</p>
           </div>  
           <img src={aboutPost[0].imgSrc} alt="Blog Post" className="w-full md:w-1/4 rounded-md" />
         </div>
        <div key={1} className={`flex flex-col md:flex-row items-center gap-10 my-10 sm:my-20 blog-right`}>
           <div className="md:ml-6 md:mr-6 mt-4 md:mt-0 md:order-2">
-            <h2 className="text-md text-4xl	text-red-700 font-bold max-sm:text-center">{aboutPost[1].title}</h2>
-            <p className="mt-2 text-gray-600 text-1xl leading-loose	">{aboutPost[1].description}</p>
+            <h2 className="text-md text-4xl text-red-700 font-bold max-sm:text-center">{aboutPost[1].title}</h2>
+            <p className="mt-2 text-gray-600 text-1xl leading-loose ">{aboutPost[1].description}</p>
           </div>  
           <img src={aboutPost[1].imgSrc} alt="Blog Post" className="w-full md:w-1/4 rounded-md md:order-1" />
         </div>
@@ -62,7 +86,7 @@ const About = () => {
         <h2 className="text-5xl font-bold mb-16 text-center">Meet the Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center items-center">
           {
-              Array.from({ length: 3 }).map(() => <WobbleCard className="team-card bg-white rounded-lg shadow-lg max-w-sm	">
+              Array.from({ length: 3 }).map(() => <WobbleCard className="team-card bg-white rounded-lg shadow-lg max-w-sm ">
               <img
                 className="w-28 h-28 rounded-full mx-auto"
                 src="https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png"
@@ -70,7 +94,7 @@ const About = () => {
               />
               <div className="text-center mt-4 person-info">
                 <h2 className="text-xl font-medium mb-3">Joshua Woods</h2>
-                <p className="text-gray-500 border-1 border-slate-400	 p-2 max-w-48 desgination">Senior Designer</p>
+                <p className="text-gray-500 border-1 border-slate-400  p-2 max-w-48 desgination">Senior Designer</p>
                 <p className="text-gray-600 mt-2 mt-3 m-auto desc">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
@@ -129,6 +153,9 @@ const About = () => {
   );
 };
 
+
+
+
 export default About;
 const AboutSection = styled.div`
  /* .social-media-icon a {
@@ -136,13 +163,30 @@ const AboutSection = styled.div`
     border-radius: 100%;
  } */
 
+
+
+
   .desc{
     width: 100%;
     max-width: 22rem;
     min-width: 18rem;
+
+
+
 
   }
   .desgination {
     margin: 25px auto;
   }
 `
+
+
+
+
+
+
+
+
+
+
+

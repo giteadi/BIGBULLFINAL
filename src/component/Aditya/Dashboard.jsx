@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import CourseHeader from "./CourseHeader";
-import CourseAbout from "./CourseAbout";
-import CourseInstructor from "./CourseInstructor";
-import CourseReviews from "./CourseReviews";
-import CourseFAQs from "./CourseFAQs";
-import CourseModules from "./CourseModules";
+import dummyVideo from '../../video/Jaguar_Feat_Bohemia_h.mp4';
 
-const CourseDetail = () => {
+const Dashboard = () => {
   const { id } = useParams();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const courses = [
     {
       id: 1,
@@ -29,11 +24,11 @@ const CourseDetail = () => {
           submodules: [
             {
               title: "What is React?",
-              videoUrl: "https://www.youtube.com/embed/vz1RlUyrc3w",
+              videoUrl: dummyVideo,
             },
             {
               title: "Getting Started with React",
-              videoUrl: "https://www.youtube.com/embed/vz1RlUyrc3w",
+              videoUrl: dummyVideo,
             },
           ],
         },
@@ -42,11 +37,11 @@ const CourseDetail = () => {
           submodules: [
             {
               title: "Functional Components",
-              videoUrl: "https://www.youtube.com/embed/vz1RlUyrc3w",
+              videoUrl: dummyVideo,
             },
             {
               title: "Class Components",
-              videoUrl: "https://www.youtube.com/embed/vz1RlUyrc3w",
+              videoUrl: dummyVideo,
             },
           ],
         },
@@ -70,11 +65,11 @@ const CourseDetail = () => {
           submodules: [
             {
               title: "JavaScript Fundamentals",
-              videoUrl: "https://www.youtube.com/embed/ajdRvxDWH4w",
+              videoUrl: dummyVideo,
             },
             {
               title: "Variables and Data Types",
-              videoUrl: "https://www.youtube.com/embed/ajdRvxDWH4w",
+              videoUrl: dummyVideo,
             },
           ],
         },
@@ -83,11 +78,11 @@ const CourseDetail = () => {
           submodules: [
             {
               title: "Defining Functions",
-              videoUrl: "https://www.youtube.com/embed/ajdRvxDWH4w",
+              videoUrl: dummyVideo,
             },
             {
               title: "Function Expressions",
-              videoUrl: "https://www.youtube.com/embed/ajdRvxDWH4w",
+              videoUrl: dummyVideo,
             },
           ],
         },
@@ -107,39 +102,60 @@ const CourseDetail = () => {
     );
   }
 
-  const handleStartLearning = () => {
-    history(`/dash2/${id}`);
+  const toggleModule = (index) => {
+    setActiveModuleIndex(activeModuleIndex === index ? null : index);
   };
 
-  const handleAddToFavorites = () => {
-    // Add to favorites logic here
-  };
-
-  const handleAddToCart = () => {
-    // Add to cart logic here
+  const playVideo = (videoUrl) => {
+    setActiveVideoUrl(videoUrl);
   };
 
   return (
-    <div className="bg-gray-100 p-6">
-      <CourseHeader
-        course={course}
-        onStartLearning={handleStartLearning}
-        onAddToFavorites={handleAddToFavorites}
-        onAddToCart={handleAddToCart}
-      />
-      <CourseAbout course={course} />
-      <CourseModules
-        course={course}
-        activeModuleIndex={activeModuleIndex}
-        setActiveModuleIndex={setActiveModuleIndex}
-        activeVideoUrl={activeVideoUrl}
-        setActiveVideoUrl={setActiveVideoUrl}
-      />
-      <CourseInstructor instructor={course.instructor} />
-      <CourseReviews />
-      <CourseFAQs />
+    <div className="bg-gray-100 p-6 flex">
+      {/* Course Modules Section */}
+      <section className="bg-white shadow-lg p-6 rounded-lg mb-6 w-1/2">
+        <h2 className="text-2xl font-bold mb-4">Course Modules</h2>
+        {course.modules.map((module, index) => (
+          <div key={index} className="mb-4">
+            <div
+              className="bg-gray-200 p-4 rounded-lg cursor-pointer"
+              onClick={() => toggleModule(index)}
+            >
+              <h3 className="text-xl font-bold">{module.title}</h3>
+            </div>
+            {activeModuleIndex === index && (
+              <div className="mt-4 ml-4 space-y-2">
+                {module.submodules.map((submodule, subIndex) => (
+                  <div
+                    key={subIndex}
+                    className="bg-gray-100 p-4 rounded-lg cursor-pointer"
+                    onClick={() => playVideo(submodule.videoUrl)}
+                  >
+                    <h4 className="text-lg">{submodule.title}</h4>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
+
+      {/* Video Player Section */}
+      {activeVideoUrl && (
+        <section className="bg-white shadow-lg p-6 rounded-lg mb-6 w-1/2 ml-4">
+          <h2 className="text-2xl font-bold mb-4">Video Player</h2>
+          <div className="relative pb-9/16">
+            <video
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              controls
+              src={activeVideoUrl}
+              title="Video Player"
+            ></video>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
 
-export default CourseDetail;
+export default Dashboard;

@@ -35,15 +35,17 @@ const FeatureCardSection = () => {
   useEffect(() => {
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current;
-      const scrollContent = scrollContainer.firstElementChild;
 
-      const scrollLeft =
-        (scrollContent.scrollWidth - scrollContainer.clientWidth) / 2;
+      // Ensure the container is fully rendered before calculating the scroll position
+      setTimeout(() => {
+        const scrollLeft = (scrollContainer.scrollWidth - scrollContainer.clientWidth) / 2;
 
-      scrollContainer.scrollTo({
-        left: scrollLeft,
-        behavior: "smooth", // Optional: adds a smooth scrolling effect
-      });
+        // Scroll the container to the center position
+        scrollContainer.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth', // Optional: adds a smooth scrolling effect
+        });
+      }, 0);
     }
   }, []);
   return (
@@ -53,7 +55,7 @@ const FeatureCardSection = () => {
           <div className="my-10">
             <h1
               style={{ fontFamily: "Alegreya" }}
-              className="text-5xl	sm:text-8xl text-center sm:my-6 font-semibold sm:pb-20"
+              className="text-5xl sm:text-8xl text-center sm:my-6 font-semibold sm:pb-20"
             >
               Our Feature Course
             </h1>
@@ -62,11 +64,11 @@ const FeatureCardSection = () => {
               ref={scrollRef}
               className="makeScrollable lg:flex justify-center"
             >
-              <div className="feature-container gap-x-20 sm:gap-16 md:gap-5 grow flex justify-center xl:max-w-screen-xl lg:w-full flex-wrap xl:grid-cols-3 md:max-lg:grid md:grid-cols-1 lg:grid-cols-3 justify-items-center items-center md:w-full md:gap-y-16 ">
+              <div className="feature-container gap-x-20 sm:gap-16 md:gap-5 grow flex justify-center 2xl:max-w-screen-2xl lg:w-full flex-wrap xl:grid-cols-3 md:max-lg:grid md:grid-cols-1 lg:grid-cols-3 justify-items-center items-center md:w-full md:gap-y-8 2xl:grid 2xl:grid-cols-3 ">
                 {cardContent.map((card) => (
                   <>
                     <CardContainer className="">
-                      <CardBody className="bg-neutral-100 relative lg:min-w-[20rem] lg:max-w-[23rem] md:w-[25rem] w-[90vw] max-w-96 h-auto rounded-xl px-[4vw] sm:px-6 py-[2vw] sm:py-10 ">
+                      <CardBody className="bg-neutral-100 relative lg:min-w-[20rem] lg:max-w-[23rem] md:w-[25rem] w-[90vw] max-w-96 xl:max-w-[25rem] h-auto rounded-xl px-[4vw] sm:px-6 py-[2vw] sm:py-10 ">
                         <CardItem
                           translateZ={50}
                           className="text-2xl font-bold text-neutral-600 text-black"

@@ -39,6 +39,9 @@ import PageNotFound from './component/pageNotFound';
 import ScrollToTop from './component/scrollTop';
 import EditProfileComponent from './component/Aditya/editProfile';
 import ProfilePage from './component/Aditya/profileDashboard';
+import Dashboard from './component/Aditya/Dashboard';
+import Dashboard2 from './component/Aditya/Dashboard2';
+import Introduction from './component/Aditya/Introduction';
 
 
 function App() {
@@ -88,6 +91,9 @@ function App() {
       <Route path='/EnrollForm' element={<EnrollForm/>}/>
       <Route path='/profile' element={<ProfilePage/>}/>
       <Route path='/editProfile' element={<EditProfileComponent/>}/>
+      <Route path='/dash2/:id' element={<Dashboard2/>}/>
+      <Route path='/intro/:id' element={<Introduction/>}/>
+
     </Routes>
       </ScrollToTop>
       <Footer/>

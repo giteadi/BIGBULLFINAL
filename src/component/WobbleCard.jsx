@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 // import { cn } from "@/utils/cn"; // Assuming cn is a utility function for class names
 import {cn } from './utils/cn'
 
+
 const WobbleCard = ({
   children,
   containerClassName,
@@ -11,6 +12,7 @@ const WobbleCard = ({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
+
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -18,6 +20,7 @@ const WobbleCard = ({
     const y = (clientY - (rect.top + rect.height / 2)) / 20;
     setMousePosition({ x, y });
   };
+
 
   return (
     <motion.section
@@ -52,7 +55,7 @@ const WobbleCard = ({
               : "translate3d(0px, 0px, 0) scale3d(1, 1, 1)",
             transition: "transform 0.1s ease-out",
           }}
-          className={cn("h-full sm:px-4 sm:py-20 sm:px-10", className)}
+          className={cn("h-full md:max-lg:px-0 md:max-lg:py-0 sm:px-4 sm:py-20 sm:px-10", className)}
         >
           <Noise />
           {children}
@@ -61,6 +64,7 @@ const WobbleCard = ({
     </motion.section>
   );
 };
+
 
 const Noise = () => {
   return (
@@ -75,4 +79,10 @@ const Noise = () => {
   );
 };
 
+
 export default WobbleCard;
+
+
+
+
+
