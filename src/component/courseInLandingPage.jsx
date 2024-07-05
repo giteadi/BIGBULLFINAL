@@ -75,6 +75,7 @@ const CoursesInLandingPage = ({ sectionRef }) => {
         eachCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
     });
+    
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current;
 
@@ -101,10 +102,10 @@ const CoursesInLandingPage = ({ sectionRef }) => {
   return (
     <>
       <Container>
-        <div className="my-10 py-10 mb-0 sm:my-10">
+        <div className="my-10 pb-10 max-sm:mb-0 sm:mb-10 lg:mb-44 lg:p-0">
           <h1
             style={{ fontFamily: "Futura-bold" }}
-            className="text-5xl sm:text-8xl text-center sm:my-10 font-semibold"
+            className="text-5xl sm:text-8xl text-center sm:my-10 md:pb-20 font-semibold"
           >
             Course
           </h1>
@@ -184,12 +185,12 @@ const CoursesInLandingPage = ({ sectionRef }) => {
               ))}
             </div>
           </div>
-          <div className="text-center text-3xl my-10">
+          <div className="text-center text-3xl mt-20">
             <span>
               <Link
                 to={"/courses"}
                 className=" view-all hover:scale-90 transition-all duration-500 shadow-2xl
- inline-flex gap-4 mb-16 sm:mb-20 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
+ inline-flex gap-4 mb-16 sm:mb-0 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
               >
                 <SiOpenlayers style={{ margin: "auto" }} />
                 View All

@@ -19,7 +19,7 @@ const LatestPage = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-screen-xl">
-       <div key={0} className={`flex flex-col md:flex-row items-center sm:max-lg:gap-0 gap-10 my-10 sm:my-20 blog-left `}>
+       <div key={0} className={`flex flex-col md:flex-row items-center sm:max-lg:gap-0 gap-10 my-10 sm:my-20 blog-left`}>
           <div className="md:ml-6 lg:mr-6 mt-4 md:mt-0">
             <h2 className=" text-md text-4xl	text-red-700 font-bold">{aboutPost[0].title}</h2>
             <h2 className="leading-[3.5rem] sm:max-lg:leading-[2.5rem] text-xxl text-2xl font-bold sm:max-lg:my-1 my-3.5">{aboutPost[0].subtitle}</h2>

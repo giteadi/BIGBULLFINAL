@@ -69,7 +69,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to={"/"}
-                  className="block md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl hover:underline hover:underline-offset-8 text-black rounded md:bg-transparent transition duration-300 ease-in-out transform hover:scale-105"
+                  className="block hover:underline hover:underline-offset-8  md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl hover:underline hover:underline-offset-8 text-black rounded md:bg-transparent transition duration-300 ease-in-out transform hover:scale-105"
                   aria-current="page"
                 >
                   Home
@@ -78,7 +78,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to={"/courses"}
-                  className="block md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="block hover:underline hover:underline-offset-8  md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Courses
                 </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to={"/about"}
-                  className="block md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black md:text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="block hover:underline hover:underline-offset-8  md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black md:text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   About
                 </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to={"/blogs"}
-                  className="block md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="block hover:underline hover:underline-offset-8  md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Blogs
                 </Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to={"/ContactUs"}
-                  className="block md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="block hover:underline hover:underline-offset-8  md:max-lg:text-lg sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Contact Us
                 </Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to={"/login"}
-                  className=" sm:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className=" hover:underline hover:underline-offset-8  sm:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Log In
                 </Link>
@@ -137,13 +137,13 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to={"/profile"}
-                  className=" md:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="hover:underline hover:underline-offset-8  md:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Profile
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className=" md:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded    md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                  className="hover:underline hover:underline-offset-8  md:max-lg:text-lg block sm:py-2 md:px-3 sm:px-1 text-xl text-black text-gray-900 rounded   dark:hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   Log Out
                 </button>

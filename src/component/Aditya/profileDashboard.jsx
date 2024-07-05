@@ -4,28 +4,6 @@ import { Link } from 'react-router-dom';
 const ProfileComponent = () => {
     return (
         <div className="bg-gradient-to-br from-red-700 via-red-800 to-black text-white min-h-screen">
-            {/* Navbar */}
-            <nav className="py-4">
-                <div className="container mx-auto px-4 flex items-center justify-between">
-                    <a href="#" className="text-lg font-semibold uppercase">Example Profile</a>
-                    <div className="flex items-center space-x-4">
-                        <button className="md:hidden focus:outline-none">
-                            {/* Insert SVG for menu icon */}
-                            <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
-                                {/* SVG paths for menu icon */}
-                            </svg>
-                        </button>
-                        {/* Dropdown content */}
-                        <div className="hidden md:flex space-x-4 items-center">
-                            {/* Dropdown items */}
-                            <a href="#" className="hover:text-gray-300">Settings</a>
-                            <a href="#" className="hover:text-gray-300">Help</a>
-                            <a href="#" className="hover:text-gray-300">Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
             {/* Profile Content */}
             <div className="container mx-auto py-6 md:px-4 md:max-xl:px-1">
                 <div className="md:flex no-wrap md:-mx-2">

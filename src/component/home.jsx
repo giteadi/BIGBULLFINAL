@@ -106,22 +106,20 @@ const Home = () => {
     const scrollContainer = document.querySelector(
       ".subscription-card-scroll-wrapper"
     );
-    const scrollContent = scrollContainer.querySelector(
-      ".subscription-card-scroll-container"
-    );
 
-    if (scrollContent) {
-      console.log("here");
-      setTimeout(() => {
+    setTimeout(() => {  
+        if (scrollContainer) {
+          console.log("here");
         const scrollLeft = (scrollContainer.scrollWidth - scrollContainer.clientWidth) / 2;
 
         // Scroll the container to the center position
-        scrollContent.scrollTo({
+        
+        scrollContainer.scrollTo({
           left: scrollLeft,
           behavior: 'smooth', // Optional: adds a smooth scrolling effect
         });
+      }
       }, 0);
-    }
     
 
     return () => {
@@ -206,7 +204,7 @@ const Home = () => {
           {/* schematic */}
           <div
             ref={sectionRef2}
-            className="grid mb-20 lg:grid-cols-2 sm:grid-cols-1 grid gap-10 px-4 sm:px-5 schematic-container m-auto	"
+            className="grid lg:grid-cols-2 sm:grid-cols-1 grid gap-10 px-4 sm:px-5 schematic-container mx-auto lg:mb-44"
           >
             {/* left */}
             <div className="flex flex-col schematic-left flex-wrap">
@@ -283,18 +281,18 @@ const Home = () => {
           {/* Courses */}
           <CoursesInLandingPage sectionRef={sectionRef3} />
           {/* Subscription */}
-          <div className="text-center bg-white subscription">
+          <div className="text-center bg-white subscription lg:mb-44">
             <div
               style={{ fontFamily: "Futura-bold" }}
-              className="text-xl sm:text-5xl max-w-2xl my-6 m-auto leading-tight"
+              className="text-xl sm:text-5xl max-w-2xl my-6 m-auto leading-tight "
             >
               <h1 className="sm:mb-4 text-[9vw] sm:text-6xl mb-2">Choice your best </h1>
               <span className="font-bold text-3xl md:text-4xl me-2">
                 <span className="sm:ps-4 pe-2">SUBSCRIPTION</span>PLAN
               </span>
             </div>
-            <div className="subscription-card-scroll-wrapper w-full max-sm:overflow-scroll lg:overflow-hidden my-20">
-        <div style={{maxWidth: '1920px'}} className="subscription-card-scroll-container sm:p-8 gap-y-5 sm:gap-y-2 md:gap-y-8 justify-center grid-cols-1 sm:grid-cols-1 flex sm:grid md:py-0 lg:py-20 lg:grid-cols-3 md:max-xl:px-10 m-auto max-sm:overflow-scroll sm:overflow-hidden w-max lg:w-auto xl:px-[8%]">
+            <div className="subscription-card-scroll-wrapper w-full max-sm:overflow-scroll lg:overflow-hidden mt-24">
+        <div style={{maxWidth: '1920px'}} className="subscription-card-scroll-container sm:p-8 gap-y-5 sm:gap-y-2 md:gap-y-8 justify-center grid-cols-1 sm:grid-cols-1 flex sm:grid md:py-0 lg:grid-cols-3 md:max-xl:px-10 m-auto max-sm:overflow-scroll sm:overflow-hidden w-max lg:w-auto xl:px-[8%]">
           {/* card */}
           {Array.from({ length: 3 }).map((_, index) => (
             <Link to="/SubscriptionPlans" key={index}>
@@ -335,7 +333,7 @@ const Home = () => {
           {/* Latest Blogs */}
           <div
             ref={sectionRef6}
-            className="flex justify-center flex-col pt-10 sm:pt-24"
+            className="flex justify-center flex-col pt-10 lg:p-0 sm:pt-24 lg:mb-44"
           >
             <h1
               style={{ fontFamily: "Futura-bold" }}
@@ -349,7 +347,7 @@ const Home = () => {
                 <Link
                   to={"/blogs"}
                   className="view-all hover:scale-90 transition-all duration-500 shadow-2xl
- inline-flex gap-4 mb-16 sm:mb-20 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
+ inline-flex gap-4 mb-16 sm:mb-20 lg:mb-0 text-white bg-red-700 py-2 px-6 rounded-3xl text-2xl"
                 >
                   <SiOpenlayers style={{ margin: "auto" }} />
                   View All
@@ -498,6 +496,31 @@ const LandingPage = styled.div`
   .subscription-card {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
       rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  }
+
+/* Latest blog section Animation  */
+.latest-blog .blog-left {
+    animation: 1.5s blogfromleft ease-in;
+  }
+
+  @keyframes blogfromleft {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  .latest-blog .blog-right {
+    animation: 1.5s blogfromright ease-in;
+  }
+  @keyframes blogfromright {
+    from {
+      transform: translateX(50%);
+    }
+    to {
+      transform: translateX(0%);
+    }
   }
 
 

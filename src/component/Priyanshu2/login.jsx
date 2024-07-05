@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../slicer/userSlicer';
-
-import loginImage from './../../Assets/loginImage.png';
+// import loginImage from './../../Assets/loginImage.png';
+import loginImage from './../../Assets/loginImage3.png';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
@@ -36,6 +37,7 @@ function Login() {
     };
     dispatch(setUser(userData)); // Dispatch action to set user
     console.log("Form submitted:", userData); // Log form submission data
+    navigate('/');
   };
 
   // Disable right-click context menu
@@ -62,16 +64,16 @@ function Login() {
               <h1 className="text-4xl md:text-7xl font-bold mb-10">Login</h1>
             </div>
 
-            <div className="w-full p-2.5 rounded-lg shadow-lg parent-container md:w-12/12 lg:w-10/12 py-10">
+            <div className="w-full p-2.5 lg:py-14 rounded-lg shadow-md parent-container md:w-12/12 lg:w-8/12 max-lg:py-10 lg:pb-10 ">
               <div className="grid justify-between grid-cols-1 sm:grid-cols-2 child-container md:flex-row">
-                <div className="w-full login-image bg-no-repeat bg-contain bg-center" style={{ backgroundImage: `url(${loginImage})` }}></div>
+                <div className="w-full login-image bg-no-repeat bg-contain bg-center" style={{ backgroundImage: `url("https://static.vecteezy.com/system/resources/previews/002/223/432/large_2x/banner-design-of-accounting-education-and-financial-literacy-to-improve-economic-growth-illustration-concept-can-be-use-for-landing-page-template-ui-web-mobile-app-poster-banner-website-free-vector.jpg")` }}></div>
 
                 <div className="w-full box">
                   <div className="flex justify-center">
-                    <form className="w-10/12 form" onSubmit={handleFormSubmit}>
+                    <form className="w-10/12  form" onSubmit={handleFormSubmit}>
                       <div className="p-4.5 max-sm:p-0 inputs">
                         <div className="">
-                          <div className="w-full mx-auto text-lg column-1 md:w-11/12">
+                          <div className="w-full max-lg:mx-auto lg:mx-0 text-lg column-1 md:w-11/12 ">
                             <label className="text-gray-700 py-2.5" htmlFor="form4Example2">
                               Email
                             </label>
@@ -85,7 +87,7 @@ function Login() {
                             />
                           </div>
 
-                          <div className="w-full mx-auto text-lg column-2 md:w-11/12">
+                          <div className="w-full max-lg:mx-auto lg:mx-0 text-lg column-2 md:w-11/12 ">
                             <div className="">
                               <label htmlFor="form4Example2" className="text-gray-700 py-2.5">
                                 Password
@@ -98,7 +100,7 @@ function Login() {
                                   value={password}
                                   onChange={handlePasswordChange}
                                 />
-                                <div className="absolute cursor-pointer right-3 top-3" onClick={togglePasswordVisibility}>
+                                <div className="absolute cursor-pointer right-3 top-2" onClick={togglePasswordVisibility}>
                                   {showPassword ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
                                 </div>
                               </div>
@@ -117,8 +119,8 @@ function Login() {
                         <div className="flex flex-wrap md:flex-nowrap max-sm:gap-y-2.5 justify-between py-2 bottom-forgetaccount">
                           <div className="forget-pass">
                             <p className="text-gray-700">
-                              <Link to="/Forget" className="underline">
-                                Forgot Password?
+                              <Link to="/forget" className="text-red-700 hover:text-red-800">
+                                Forgot Password ?
                               </Link>
                             </p>
                           </div>
@@ -126,7 +128,7 @@ function Login() {
                           <div className="no-account">
                             <p className="text-gray-700">
                               Don't have an account?{' '}
-                              <Link to={'/EnrollForm'} className="px-1 underline register-link">
+                              <Link to={'/EnrollForm'} className="px-1 text-red-700 hover:text-red-800 register-link">
                                 Enroll Now
                               </Link>
                             </p>

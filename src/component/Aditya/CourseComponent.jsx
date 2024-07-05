@@ -76,63 +76,8 @@ const CourseComponent = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
 
-
   const [currentPage, setCurrentPage] = useState(1);
-  const coursesPerPage = 6;
-
-
-  // Calculate total number of pages
-  const totalPages = Math.ceil(courses.length / coursesPerPage);
-
-
-  // Get current courses
-  const indexOfLastCourse = currentPage * coursesPerPage;
-  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
-  const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
-
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-
-  const previousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-
-  const categories = ["All", "React", "Node.js", "CSS", "JavaScript" ];
-  const priceRanges = ["All", "Under Rs 50", "Rs 50 - Rs 100", "Above Rs 100"];
-  const dates = ["All", "Last 30 Days", "Last 6 Months", "Last Year"];
-
-
-  const handleFilterClick = (category) => {
-    setSelectedCategory(category);
-  };
-
-
-  const handlePriceChange = (e) => {
-    setSelectedPrice(e.target.value);
-  };
-
-
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
-  };
-
-
-  const handleCourseClick = (id) => {
-    navigate(`/Cdetail/${id}`);
-  };
-
+  const coursesPerPage = 3;
 
   const filterByPrice = (course) => {
     switch (selectedPrice) {
@@ -146,7 +91,6 @@ const CourseComponent = () => {
         return true;
     }
   };
-
 
   const filterByDate = (course) => {
     const currentDate = new Date();
@@ -163,7 +107,6 @@ const CourseComponent = () => {
     }
   };
 
-
   const filteredCourses = courses.filter((course) => {
     return (
       (selectedCategory === "All" || course.category === selectedCategory) &&
@@ -172,6 +115,51 @@ const CourseComponent = () => {
     );
   });
 
+  const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = filteredCourses.slice(
+    indexOfFirstCourse,
+    Math.min(indexOfLastCourse, filteredCourses.length)
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const categories = ["All", "React", "Node.js", "CSS", "JavaScript"];
+  const priceRanges = ["All", "Under Rs 50", "Rs 50 - Rs 100", "Above Rs 100"];
+  const dates = ["All", "Last 30 Days", "Last 6 Months", "Last Year"];
+
+  const handleFilterClick = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handlePriceChange = (e) => {
+    setSelectedPrice(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleCourseClick = (id) => {
+    navigate(`/Cdetail/${id}`);
+  };
 
   useEffect(() => {
     const card = document.querySelectorAll(".card");
@@ -181,19 +169,15 @@ const CourseComponent = () => {
         const x = e.clientX - rect.left; // x position within the element.
         const y = e.clientY - rect.top; // y position within the element.
 
-
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-
 
         const rotateX = ((y - centerY) / centerY) * 5;
         const rotateY = ((x - centerX) / centerX) * -5;
 
-
         eachCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
     });
-
 
     return () => {
       card.forEach((eachCard) => {
@@ -272,7 +256,7 @@ const CourseComponent = () => {
         </div>
 
 
-        <div className="container mx-auto">
+        <div className="container mx-auto min-h-[50vh]">
           <div className="px-4.5 py-4.5 flex justify-center">
             <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3   max-w-5xl w-ful gap-5">
               {/* <label>Categories by Dater</label> */}
@@ -359,30 +343,6 @@ const CourseComponent = () => {
            {index + 1}
          </p>
          ))}
-        {/* <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          1
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          2
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          3
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2">
-          4
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          5
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          6
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          7
-        </p>
-        <p className="text-xl font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-          8
-        </p> */}
       </div>
       <div onClick={nextPage} disabled={currentPage === totalPages} className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
         <p className="text-xl font-medium leading-none mr-3">Next</p>

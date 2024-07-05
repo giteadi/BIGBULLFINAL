@@ -1,44 +1,73 @@
 import React, { useState } from 'react';
-// import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
+import { Toaster, toast } from 'react-hot-toast';
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [cpassword, setCPassword] = useState('');
+  const [otp, setOtp] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== cpassword) {
       toast.error('Passwords do not match');
       return;
     }
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Password reset successfully");
-      setError('');
-    }, 1000);
+    try {
+      const response = await axios.post('http://localhost:6060/api/v1/auth/updatePassword', {
+        email,
+        password,
+        cpassword,
+        otp,
+      });
+      setMessage(response.data.message);
+      if (response.data.success) {
+        toast.success('Password reset successfully!');
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Something went wrong');
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      {/* <Toaster /> */}
+      <Toaster />
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 style={{fontFamily: "Futura-bold"}} className="text-3xl font-bold text-center text-gray-900">Reset Password</h2>
-        {error && <div className="p-4 text-sm text-red-600 bg-red-200 border border-red-400 rounded-md">{error}</div>}
+        <h2 className="text-3xl font-bold text-center text-gray-900" style={{ fontFamily: "Futura-bold" }}>Reset Password</h2>
+        {message && (
+          <div className="p-4 mt-4 text-sm text-center text-red-500 bg-red-100 rounded-md">
+            {message}
+          </div>
+        )}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email address
+              Email
             </label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="block w-full px-4 py-2 mt-1 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Enter your email"
               required
+              className="w-full px-3 py-2 mt-1 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
+              OTP
+            </label>
+            <input
+              id="otp"
+              type="text"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              required
+              className="w-full px-3 py-2 mt-1 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
           <div>
@@ -50,33 +79,29 @@ const ResetPassword = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block w-full px-4 py-2 mt-1 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Enter new password"
               required
+              className="w-full px-3 py-2 mt-1 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
           <div>
-            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
-              Confirm Password
+            <label htmlFor="cpassword" className="block text-sm font-medium text-gray-700">
+              Confirm New Password
             </label>
             <input
-              id="confirm-password"
+              id="cpassword"
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="block w-full px-4 py-2 mt-1 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Confirm your new password"
+              value={cpassword}
+              onChange={(e) => setCPassword(e.target.value)}
               required
+              className="w-full px-3 py-2 mt-1 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <div>
-            <button
-              type="submit"
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Reset Password
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-white  bg-red-700 hover:bg-red-800 rounded-md focus:ring-4"
+          >
+            Reset Password
+          </button>
         </form>
       </div>
     </div>

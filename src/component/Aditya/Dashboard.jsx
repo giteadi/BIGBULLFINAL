@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import dummyVideo from '../../video/Jaguar_Feat_Bohemia_h.mp4';
+// import dummyVideo from '../../video/Jaguar_Feat_Bohemia_h.mp4';
 
 const Dashboard = () => {
   const { id } = useParams();

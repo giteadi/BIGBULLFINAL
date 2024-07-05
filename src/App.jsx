@@ -42,6 +42,7 @@ import ProfilePage from './component/Aditya/profileDashboard';
 import Dashboard from './component/Aditya/Dashboard';
 import Dashboard2 from './component/Aditya/Dashboard2';
 import Introduction from './component/Aditya/Introduction';
+import ForgetPass from './component/Aditya/forget';
 
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
       <Route path='/editProfile' element={<EditProfileComponent/>}/>
       <Route path='/dash2/:id' element={<Dashboard2/>}/>
       <Route path='/intro/:id' element={<Introduction/>}/>
+      <Route path='/forget' element={<ForgetPass/>}/>
 
     </Routes>
       </ScrollToTop>

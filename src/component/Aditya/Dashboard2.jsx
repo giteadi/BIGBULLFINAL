@@ -126,6 +126,7 @@ const Dashboard = () => {
                     className="absolute top-0 left-0 w-full h-full"
                     controls
                     src={videoSrc}
+                    controlsList="nodownload"
                     title="Video Player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
