@@ -1,6 +1,9 @@
 import React from "react";
 
 const CourseHeader = ({ course, onStartLearning, onAddToFavorites, onAddToCart }) => {
+  function addHandler(){
+    
+  }
   return (
     <header className="bg-white shadow-lg p-6 rounded-lg mb-6">
       <div className="flex flex-col lg:flex-row justify-between items-start">
@@ -17,12 +20,12 @@ const CourseHeader = ({ course, onStartLearning, onAddToFavorites, onAddToCart }
             >
               Start learning now
             </button>
-            <button
+            {/* <button
               className="border border-blue-600 text-red-600 px-4 py-2 rounded-md mb-2"
               onClick={onAddToFavorites}
             >
               Add to favorites
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="w-full lg:w-1/3">
@@ -52,7 +55,7 @@ const CourseHeader = ({ course, onStartLearning, onAddToFavorites, onAddToCart }
             </div>
             <button
               className="bg-red-600 text-white w-full mt-4 py-2 rounded-md"
-              onClick={onAddToCart}
+              onClick={addHandler}
             >
               Add to Cart
             </button>

@@ -111,21 +111,11 @@ const CourseDetail = () => {
     history(`/dash2/${id}`);
   };
 
-  const handleAddToFavorites = () => {
-    // Add to favorites logic here
-  };
-
-  const handleAddToCart = () => {
-    // Add to cart logic here
-  };
-
   return (
     <div className="bg-gray-100 p-6">
       <CourseHeader
         course={course}
         onStartLearning={handleStartLearning}
-        onAddToFavorites={handleAddToFavorites}
-        onAddToCart={handleAddToCart}
       />
       <CourseAbout course={course} />
       <CourseModules

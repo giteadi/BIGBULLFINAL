@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../slicer/userSlicer';
-// import loginImage from './../../Assets/loginImage.png';
 import loginImage from './../../Assets/loginImage3.png';
+import axios from 'axios';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
@@ -29,31 +28,20 @@ function Login() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Simulating a successful login response
-    const userData = {
-      email,
-      password,
-      // Any other user data you want to store in Redux state
-    };
-    dispatch(setUser(userData)); // Dispatch action to set user
-    console.log("Form submitted:", userData); // Log form submission data
-    navigate('/');
+    try {
+      const response = await axios.post('http://localhost:6060/api/v1/auth/login', {
+        email: email,
+        password: password,
+      });
+
+      const { user, token } = response.data;
+      console.log('User data:', user);
+      dispatch(setUser({ ...user, token }));
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle error state or show a notification
+    }
   };
-
-  // Disable right-click context menu
-  useEffect(() => {
-    const handleContextMenu = (event) => {
-      event.preventDefault();
-      console.log('Right-click disabled');
-    };
-
-    document.addEventListener('contextmenu', handleContextMenu);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-    };
-  }, []);
 
   return (
     <>
@@ -66,11 +54,11 @@ function Login() {
 
             <div className="w-full p-2.5 lg:py-14 rounded-lg shadow-md parent-container md:w-12/12 lg:w-8/12 max-lg:py-10 lg:pb-10 ">
               <div className="grid justify-between grid-cols-1 sm:grid-cols-2 child-container md:flex-row">
-                <div className="w-full login-image bg-no-repeat bg-contain bg-center" style={{ backgroundImage: `url("https://static.vecteezy.com/system/resources/previews/002/223/432/large_2x/banner-design-of-accounting-education-and-financial-literacy-to-improve-economic-growth-illustration-concept-can-be-use-for-landing-page-template-ui-web-mobile-app-poster-banner-website-free-vector.jpg")` }}></div>
+                <div className="w-full login-image bg-no-repeat bg-contain bg-center" style={{ backgroundImage: `url(${loginImage})` }}></div>
 
                 <div className="w-full box">
                   <div className="flex justify-center">
-                    <form className="w-10/12  form" onSubmit={handleFormSubmit}>
+                    <form className="w-10/12 form" onSubmit={handleFormSubmit}>
                       <div className="p-4.5 max-sm:p-0 inputs">
                         <div className="">
                           <div className="w-full max-lg:mx-auto lg:mx-0 text-lg column-1 md:w-11/12 ">
@@ -120,7 +108,7 @@ function Login() {
                           <div className="forget-pass">
                             <p className="text-gray-700">
                               <Link to="/forget" className="text-red-700 hover:text-red-800">
-                                Forgot Password ?
+                                Forgot Password?
                               </Link>
                             </p>
                           </div>

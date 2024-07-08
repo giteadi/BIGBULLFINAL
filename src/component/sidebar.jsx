@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../slicer/userSlicer";
 
 
-const SideBar = ({ checked, setChecked }) => {
+const SideBar = ({ checked, setChecked="" }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
